@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理页面</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-theme.min.css">
+    <style>
+        body{background-color: whitesmoke}
+        header{    height: 40px;  background-color: cornflowerblue;  margin-bottom: 1em;}
+        .list-group-item{padding: 2px 15px;}
+        .nav-hide{display:none}
+        .left-nav {cursor: pointer;text-align: center}
+        .left-nav h5 {padding: 5px 0em;  background-color: cadetblue;  color: white;  font-size: 14px;  letter-spacing: 0.5em;}
+        .left-nav a{font-size: 12px;color:black}
+        .list-group-item{background-color: #faebcc}
+
+        .right-warp{background-color: white;padding: 1em 2em}
+        .stat-table{    padding: 1em 1em;  border: 2px solid;  border-radius: 1em;}
+        .stat-table h4{text-align: center}
+        #handleFreshTableBtn{float: right}
+        .selected{background-color: darkorange;color: white;font-size: 500}
+        .right-head img{height: 8em;width: 100%;margin-bottom: 1em}
+        .nice-dialog{ display: none;   width: 30em;  height: 15em;  background-color: #2e6da4;  position: fixed;  left: 35%;  top: 30%;    border: 1px solid #2e6da4;
+            box-shadow: 5px 5px 10px;}
+        .dialog-infowarp{height: 70%;padding-top: 2em;text-align:center;color: white}
+        .dialog-btn{}
+        .dialog-btn button{margin-left: 7em}
+        .dialog-close{float: right;cursor: pointer}
+        input[type=button]{border-radius:0px}
+        .table-col-name{background-color: darkcyan;
+            color: white;}
+    </style>
+</head>
+<body>
+<header style="height: 40px"><span style="font-size: 2em;margin-left: 2em">网站管理后台<%= title %></span></header>
+<div class="container" >
+<div class="row">
+    <div class="col-md-2">
+        <div style="overflow: hidden;background-color: #d6e9c6;padding: 5px;min-height: 400px;">
+           <div class="left-nav">
+                <h5>系统管理</h5>
+                <ul class="MM list-group">
+                    <li posturl="/getWebSiteInfo" postdata="" posttable="flow" class="list-group-item selected llgl"><a  target="main">系统首页</a></li>
+                    <li class="list-group-item "><a  target="main">新站投放</a></li>
+                    <li class="list-group-item"><a  target="main">恢复投放</a></li>
+                    <li class="list-group-item"><a  target="main">佣金查询</a></li>
+                    <li class="list-group-item"><a  target="_blank">KPI登录</a></li>
+                    <li class="list-group-item"><a  target="_blank">技术支持</a></li>
+                </ul>
+                <h5>网站管理</h5>
+                <ul class="MM list-group nav-hide">
+                    <li posturl="/wzzbmp/queryWzz" postdata="{'web_register_state':1}" posttable="wzz" class="list-group-item wzgl"><a  target="main">网站主审核</a></li>
+                    <li posturl="/wzz/queryWzz" postdata="" posttable="wzz" class="list-group-item wzgl" ><a  target="main">所有网站</a></li>
+                    <li posturl="/wzz/queryWzz" postdata="{'web_register_state':0}" posttable="wzz" TableCol="",TableItemName="",TableTitle="" class="list-group-item wzgl"><a  target="main">待审核网站</a></li>
+                    <li posturl="/wzz/queryWzz" postdata="{'web_state':1}" posttable="wzz" class="list-group-item "><a  target="main">正常会员</a></li>
+                    <li posturl="/wzz/queryWzz" postdata="{'web_register_state':3}" posttable="wzz" class="list-group-item " class="list-group-item wzgl"><a  target="_blank">锁定网站</a></li>
+                    <li class="list-group-item"><a  target="_blank">所有会员</a></li>
+                </ul>
+                <h5>广告管理</h5>
+                <ul class="MM list-group nav-hide">
+                    <li class="list-group-item"><a  target="main">广告供求管理</a></li>
+                    <li class="list-group-item"><a  target="main">站长广告申请</a></li>
+                    <li class="list-group-item"><a  target="main">广告位申请</a></li>
+                    <li class="list-group-item"><a  target="main">效果管理</a></li>
+                </ul>
+                <h5>CRM管理</h5>
+                <ul class="MM list-group nav-hide" >系统管理
+                    <li class="list-group-item"><a  target="main">系统首页</a></li>
+                    <li class="list-group-item"><a  target="main">新站投放</a></li>
+                    <li class="list-group-item"><a  target="main">恢复投放</a></li>
+                    <li class="list-group-item"><a  target="main">佣金查询</a></li>
+                    <li class="list-group-item"><a  target="_blank">KPI登录</a></li>
+                    <li class="list-group-item"><a  target="_blank">技术支持</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 right-warp" style="height: 1600px">
+        <div class="right-head"><img src="http://img3.imgtn.bdimg.com/it/u=3093510935,3806129624&fm=21&gp=0.jpg" /></div>
+        <div id="StatTable"></div>
+        <div id="NiceDialogContainer"></div>
+        <hr>
+        <div><a href="tencent://message/?uin=3278192278&Site=www.ete.cn&Menu=yes"> 测试qq</a></div>
+    </div>
+</div>
+</div>
+
+
+
+<script src="/lib/jquery-1.9.1.min.js" type="text/javascript"></script>
+<!-- <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<script src="/lib/React/react.min.js" type="text/javascript"></script>
+<script src="/lib/React/JSXTransformer.js" type="text/javascript"></script>
+<script src="/reactComponent/tableComponent.js" type="text/jsx"></script>
+<script type="text/jsx">
+
+let ajaxData = {"url":'<%= postUrl %>',"method":"post","data":"","dataType":"json"};
+let mytable = React.render(
+        <MyTable ajaxData={ajaxData} /> ,
+        document.getElementById('StatTable')
+);
+
+
+
+$(".left-nav h5").click(function(){
+    $(this).next().toggle(200,function(){
+
+    });
+});
+$(".wzgl").click(function(){
+    $(".left-nav li").removeClass("selected");
+    $(this).addClass("selected");
+
+    var posturl=$(this).attr("posturl"),postdata=$(this).attr("postdata"),posttable=$(this).attr("posttable"),TableCol="",TableItemName="",TableTitle="";
+    console.log(posttable);
+    switch (posttable)
+    {
+        case "wzz":
+            TableCol="网站主,注册日期,域名,联系电话,QQ,网站类别,审核状态,操作";
+            TableItemName="web_owner_name,web_sign_date,web_domain,web_owner_phone,web_owner_qq,web_category,web_register_state";
+            TableTitle="网站主信息";
+            break;
+        case "flow":
+            TableCol="日期,网站主,媒介成员,CPA,富媒体,CPC,CPM,网站IP";
+            TableItemName="date,web_owner,web_owner,CPA,fumeiti,CPC,CPM,web_ip";
+            TableTitle="流量统计信息"
+            break;
+        default :
+            break;
+    }
+    React.render(
+            <StatTableWithOption posturl={posturl} postdata={postdata} TableCol={TableCol} TableItemName={TableItemName} TableTitle={TableTitle} />,
+            document.getElementById('StatTable')
+    );
+    $("#handleFreshTableBtn").click();
+
+});
+$(".llgl").click(function(){
+    $(".left-nav li").removeClass("selected");
+    $(this).addClass("selected");
+    var posturl=$(this).attr("posturl"),postdata=$(this).attr("postdata"),posttable=$(this).attr("posttable"),TableCol="",TableItemName="",TableTitle="";
+    console.log(posttable);
+    switch (posttable)
+    {
+        case "wzz":
+            TableCol="网站主,注册日期,域名,联系电话,QQ,网站类别,审核状态,操作";
+            TableItemName="web_owner_name,web_sign_date,web_domain,web_owner_phone,web_owner_qq,web_category,web_register_state";
+            TableTitle="网站主信息";
+            break;
+        case "flow":
+            TableCol="日期,网站主,媒介成员,CPA,富媒体,CPC,CPM,网站IP";
+            TableItemName="date,web_owner,web_owner,CPA,fumeiti,CPC,CPM,web_ip";
+            TableTitle="流量统计信息"
+            break;
+        default :
+            break;
+    }
+    React.render(
+            <StatTableNormal posturl={posturl} postdata={postdata} TableCol={TableCol} TableItemName={TableItemName} TableTitle={TableTitle} />,
+            document.getElementById('StatTable')
+    );
+    $("#handleFreshTableBtn").click();
+
+});
+$("#wzzBMP").click(function(){
+    React.render(
+            <StatTable posturl="/wzz/getWebSiteInfo" postdata="{'aa':'bb'}" TableCol="网站主,注册日期,联系电话,QQ,网站类别,审核状态" TableItemName="web_owner_name,web_sign_date,web_owner_phone,web_owner_qq,web_category,web_register_state" TableTitle="网站主信息" />,
+            document.getElementById('StatTable')
+    );
+    $("#handleFreshTableBtn").click();
+});
+
+//暂时废弃的代码
+//暂时废弃的代码
+//暂时废弃的代码
+//暂时废弃的代码//暂时废弃的代码
+//暂时废弃的代码
+//暂时废弃的代码
+//暂时废弃的代码
+//暂时废弃的代码*************************************************************************************************************
+
+/*
+ *   React 模板
+ *
+ * */
+var StatTableNormal=React.createClass({
+    getInitialState:function(){
+        return {ShowJson:[],ShowHtml:"",PostURL:"/getWebSiteInfo"};
+    },
+    componentDidMount:function(){
+        console.log("componentDid...");
+        this.freshStatTable();
+    },
+    freshStatTable:function(){
+        var postdata="";
+        if(this.props.postdata&&this.props.postdata!="")
+            postdata=eval('(' + this.props.postdata + ')');
+
+        $.post(this.props.posturl,postdata,function(res){
+            console.log(JSON.stringify(res));
+            this.setState({ShowJson:res.data});
+        }.bind(this));
+        console.log("fresh...");
+
+    },
+    createTableHtml:function(){
+        var StatMap={0:"未审核",1:"已审核",2:"已暂停",3:"已锁定",4:"已拒绝"};
+
+        var html=new Array();
+        var tableColsName=new Array();
+        var tableColItemName=this.props.TableItemName.split(',');
+        console.log(this.props.TableItemName);
+        this.props.TableCol.split(',').map(function(item){
+            tableColsName.push(<td height="30" align="center">{item}</td>);
+        });
+        html.push(<tr >{tableColsName}</tr>);
+        console.log(this.state.ShowJson);
+        if(this.state.ShowJson&&this.state.ShowJson.length>0)
+        {
+            for(var i=0;i<this.state.ShowJson.length;i++){
+                var data=this.state.ShowJson[i];
+                if(data["nWebState"])
+                    data["nWebState"]=StatMap[data["nWebState"]];
+                var tableColItem=new Array();
+                for(key in tableColItemName){
+                    if((tableColItemName[key]=="date"||tableColItemName[key]=="web_sign_date")&&data[tableColItemName[key]])
+                        tableColItem.push(<td>{data[tableColItemName[key]].substring(0,10)}</td>);
+                    else
+                        tableColItem.push(<td>{data[tableColItemName[key]]}</td>);
+                }
+                html.push(<tr>{tableColItem}</tr>);
+            };
+        }
+
+        return html;
+    },
+    render:function(){
+
+        var TableHtml=this.createTableHtml();
+
+        return (<div>
+            <button  id="handleFreshTableBtn" onClick={this.freshStatTable}>刷新</button>
+            <form className="form-group">
+                <label > 按日期查询:</label>
+                <input type="date" />
+                <input type="button" value="查询" />
+            </form>
+            <div className="stat-table">
+                <h4>{this.props.TableTitle}</h4>
+                <table className="table table-striped table-hover table-bordered">
+                    <tbody>{TableHtml}</tbody>
+                </table>
+            </div>
+        </div>)
+    }
+});
+
+var StatTableWithOption=React.createClass({
+    getInitialState:function(){
+        return {ShowJson:[],ShowHtml:{},PostURL:"/queryAdvertStat"};
+    },
+    componentDidMount:function(){
+        console.log("componentDid...");
+        this.freshStatTable();
+    },
+    freshStatTable:function(){
+        var postdata="";
+        if(this.props.postdata&&this.props.postdata!="")
+            postdata=eval('(' + this.props.postdata + ')');
+
+        $.post(this.props.posturl,postdata,function(res){
+            console.log(JSON.stringify(res));
+            this.setState({ShowJson:res.data});
+        }.bind(this));
+        console.log("fresh...");
+    },
+    createTableHtml:function(){
+        var StatMap={0:"未审核",1:"已审核",2:"已暂停",3:"已锁定",4:"已拒绝"};
+
+        var html=new Array();
+        var tableColsName=new Array();
+        var tableColItemName=["日期","网站主","媒介成员","CPA","富媒体","CPC","CPM","网站IP"];
+        if(!this.props.TableItemName){
+            tableColItemName = this.props.TableItemName.split(',');
+        }
+
+        console.log(this.props.TableItemName);
+
+        this.props.TableCol.split(',').map(function(item){
+            tableColsName.push(<td height="30" align="center">{item}</td>);
+        });
+        html.push(<tr class="table-col-name">{tableColsName}</tr>);
+        if(this.state.ShowJson&&this.state.ShowJson.length>0)
+        {
+            for(var i=0;i<this.state.ShowJson.length;i++){
+                var data=this.state.ShowJson[i];
+                if(data["web_register_state"]||data["web_register_state"]==0)
+                    data["web_register_state"]=StatMap[data["web_register_state"]];
+                var tableColItem=new Array();
+                for(key in tableColItemName){
+                    if((tableColItemName[key]=="date"||tableColItemName[key]=="web_sign_date")&&data[tableColItemName[key]])
+                        tableColItem.push(<td>{data[tableColItemName[key]].substring(0,10)}</td>);
+                    else
+                        tableColItem.push(<td>{data[tableColItemName[key]]}</td>);
+                }
+                tableColItem.push(<td ><OptionWzzBtn data={data} btnName="审批"></OptionWzzBtn>
+                    <OptionWzzBtn data={data} btnName="暂停"></OptionWzzBtn>
+                    <OptionWzzBtn data={data} btnName="锁定"></OptionWzzBtn>
+                    <OptionWzzBtn data={data} btnName="拒绝"></OptionWzzBtn>
+                    <OptionWzzBtn data={data} btnName="网站说明"></OptionWzzBtn></td>);
+                html.push(<tr>{tableColItem}</tr>);
+            };
+        }
+        return html;
+    },
+    render:function(){
+
+        var TableHtml=this.createTableHtml();
+
+        return (<div>
+            <button  id="handleFreshTableBtn" onClick={this.freshStatTable}>刷新</button>
+            <form className="form-group">
+                <label > 按日期查询:</label>
+                <input type="date" />
+                <input type="button" value="查询" />
+            </form>
+            <div className="stat-table">
+                <h4>{this.props.TableTitle}</h4>
+                <table className="table table-striped table-hover table-bordered"><tbody>{TableHtml}</tbody></table>
+            </div>
+        </div>)
+    }
+});
+
+var OptionWzzBtn=React.createClass({
+    render:function(){
+        //console.log("btn 数据：",JSON.stringify(this.props.data))
+        return (
+                <input className="btn-xs" onClick={this.handleOptionClick} type="button" value={this.props.btnName} />
+        )
+    },
+    componentDidMount:function(){
+
+    },
+    handleSubmit:function(){
+        console.log("ddd");
+        console.log("doYes")
+        var postData={
+            "web_ip":this.props.data.web_ip,
+        };
+        switch (this.props.btnName){
+            case "审批":
+                postData.web_register_state=1;
+                postData.web_state=1;
+                console.log(this.props.data.web_ip);
+                var addFlowStatData={"web_owner":this.props.data.web_owner_name,"web_ip":this.props.data.web_ip,"web_domain":this.props.web_domain};
+                $.post("/gly/addFlowStat",addFlowStatData,function(res){
+
+                });
+                break;
+            case "暂停":
+                postData.web_register_state=2;
+            case "锁定":
+                postData.web_register_state=3;
+                break;
+            case "拒绝":
+                postData.web_register_state=4;
+                break;
+            case "网站说明":
+                postData.web_register_state=2;
+                break;
+            default :break;
+        };
+        console.log(JSON.stringify(postData));
+        $.post("/gly/editWzz",postData,function(res){
+            if(res.code==1)
+                alert("操作成功！");
+            else
+                alert("操作失败！");
+        });
+        $("#NiceDialog").hide();
+        $("#handleFreshTableBtn").click();
+    },
+    handleOptionClick:function(){
+        var dialogInfo="确定要对 "+this.props.data.web_owner_name+" 进行操作？";
+        React.render(
+                <NiceDialog handle={this.handleSubmit} dialogInfo={dialogInfo} />,
+                document.getElementById('NiceDialogContainer')
+        );
+        $("#NiceDialog").show();
+    }
+
+});
+
+var NiceDialog=React.createClass({
+    render:function(){
+        return (
+                <div id="NiceDialog" className="nice-dialog">
+                    <div onClick={this.handleClose} className="dialog-close">X</div>
+                    <div className="dialog-infowarp">
+                        <h4>{this.props.dialogInfo}</h4>
+                    </div>
+                    <div className="dialog-btn">
+                        <button onClick={this.props.handle}>确定</button>
+                        <button onClick={this.handleClose}>取消</button>
+                    </div>
+                </div>
+        )
+    },
+    handleClose:function(){
+        $("#NiceDialog").hide();
+    }
+
+});
+
+/*
+ React.render(
+ <StatTableNormal posturl="/getWebSiteInfo" postdata="{aa:'bb'}" TableCol="日期,网站主,媒介成员,CPA,富媒体,CPC,CPM,网站IP" TableItemName="sWebRegisterDate,sOwnerUserName,web_owner,nCPA,fumeiti,nCPC,nCPM,sWebIp" TableTitle="流量统计信息" />,
+ document.getElementById('StatTable')
+ );
+ */
+
+
+
+
+
+var NiceTable=React.createClass({
+    getInitialState:function(){
+        return {ShowJson:[],ShowHtml:""};
+    },
+    componentDidMount:function(){
+        console.log("componentDid...");
+    },
+    render:function(){
+        //console.log("prop data is:"+this.props.data);
+        var html=new Array();
+        html.push(<tr>
+            <td  height="30" align="center">{this.props.TableCol[0]}</td>
+            <td  align="center">{this.props.TableCol[1]}</td>
+            <td  height="30" align="center" bgcolor="#f2f2f2">{this.props.TableCol[2]}</td>
+            <td  align="center"><a >{this.props.TableCol[3]}</a></td>
+            <td  align="center"> <a >{this.props.TableCol[4]}</a></td>
+            <td  height="30" align="center"><a>{this.props.TableCol[5]}</a></td>
+            <td  align="center"><a>{this.props.TableCol[6]}</a></td>
+            <td  align="center">{this.props.TableCol[7]}</td>
+        </tr>);
+        for(var i=0;i<this.props.data.length;i++){
+            var data=this.props.data[i];
+            html.push(<tr>
+                <td>{data.date.substring(0,10)}</td>
+                <td>{data.web_owner}</td>
+                <td>{data.web_owner}</td>
+                <td>{data.CPA}</td>
+                <td>{data.fumeiti}</td>
+                <td>{data.CPC}</td>
+                <td>{data.CPM}</td>
+                <td>{data.web_ip}</td>
+            </tr>);
+        };
+        return (<div className="stat-table">
+            <h4>{this.props.TableTitle}</h4>
+            <table className="table table-striped table-hover">
+                <tbody>
+                    {html}
+                </tbody>
+            </table>
+        </div>);
+    }
+});
+
+var StatTable=React.createClass({
+    getInitialState:function(){
+        return {ShowJson:[],ShowHtml:"",PostURL:"/queryAdvertStat"};
+    },
+    componentDidMount:function(){
+        console.log("componentDid...");
+        this.freshStatTable();
+    },
+    freshStatTable:function(){
+        var postdata="";
+        if(this.props.postdata&&this.props.postdata!="")
+            postdata=eval('(' + this.props.postdata + ')');
+
+        $.post(this.props.posturl,postdata,function(res){
+            console.log(JSON.stringify(res));
+            this.setState({ShowJson:res.data});
+        }.bind(this));
+        console.log("fresh...");
+
+    },
+
+    render:function(){
+        //this.freshStatTable();
+        var TableCol=this.props.TableCol.split(',');
+        //this.setState({PostURL:this.props.posturl});
+        console.log(this.props.TableItemName);
+        return (<div>
+            <button  id="handleFreshTableBtn" onClick={this.freshStatTable}>刷新</button>
+            <form className="form-group">
+                <label > 按日期查询:</label>
+                <input type="date" />
+                <input type="button" value="查询" />
+            </form>
+            <NiceTableX TableCol={this.props.TableCol} TableItemName={this.props.TableItemName} TableTitle={this.props.TableTitle} data={this.state.ShowJson} />
+        </div>)
+    }
+});
+
+
+var NiceTableX=React.createClass({
+    getInitialState:function(){
+        return {ShowJson:[],ShowHtml:""};
+    },
+    componentDidMount:function(){
+        console.log("componentDid...");
+    },
+    render:function(){
+        //console.log("prop data is:"+this.props.data);
+        var html=new Array();
+        var tableColsName=new Array();
+        var tableColItemName=this.props.TableItemName.split(',');
+        console.log(this.props.TableItemName);
+        this.props.TableCol.split(',').map(function(item){
+            tableColsName.push(<td height="30" align="center">{item}</td>);
+        });
+        html.push(<tr>{tableColsName}</tr>);
+        if(this.props.data&&this.props.data.length>0)
+        {
+            for(var i=0;i<this.props.data.length;i++){
+                var data=this.props.data[i];
+                var tableColItem=new Array();
+                for(key in tableColItemName){
+                    if((tableColItemName[key]=="date"||tableColItemName[key]=="web_sign_date")&&data[tableColItemName[key]])
+                        tableColItem.push(<td>{data[tableColItemName[key]].substring(0,10)}</td>);
+                    else
+                        tableColItem.push(<td>{data[tableColItemName[key]]}</td>);
+                }
+                html.push(<tr>{tableColItem}</tr>);
+            };
+        }
+
+
+        return (<div className="stat-table">
+            <h4>{this.props.TableTitle}</h4>
+            <table className="table table-striped table-hover table-bordered">
+                <tbody>
+                    {html}
+                </tbody>
+            </table>
+        </div>);
+    }
+});
+//SH=审核
+var NiceTableForSHwzz=React.createClass({
+    getInitialState:function(){
+        return {ShowJson:[],ShowHtml:""};
+    },
+    componentDidMount:function(){
+        console.log("componentDid...");
+    },
+    render:function(){
+        //console.log("prop data is:"+this.props.data);
+        var html=new Array();
+        var tableColsName=new Array();
+        var tableColItemName=this.props.TableItemName.split(',');
+        console.log(this.props.TableItemName);
+        this.props.TableCol.split(',').map(function(item){
+            tableColsName.push(<td height="30" align="center">{item}</td>);
+        });
+        html.push(<tr>{tableColsName}</tr>);
+        if(this.props.data&&this.props.data.length>0)
+        {
+            for(var i=0;i<this.props.data.length;i++){
+                var data=this.props.data[i];
+                var tableColItem=new Array();
+                for(key in tableColItemName){
+                    if((tableColItemName[key]=="date"||tableColItemName[key]=="web_sign_date")&&data[tableColItemName[key]])
+                        tableColItem.push(<td>{data[tableColItemName[key]].substring(0,10)}</td>);
+                    else{
+                        if(tableColItemName[key]=="web_register_state"){
+                            switch (data[tableColItemName[key]]){
+                                case "1":
+                                    tableColItem.push(<td >待审核</td>);
+                                    break;
+                                case "2":
+                                    tableColItem.push(<td >已审核</td>);
+                                    break;
+                                default :
+                                    tableColItem.push(<td >无效状态</td>);
+                                    break;
+                            }
+                        }else{
+                            tableColItem.push(<td>{data[tableColItemName[key]]}</td>);
+                        }
+                    }
+
+                }
+                tableColItem.push(<td><input type="button" value="审批" /><input type="button" value="暂停" /><input type="button" value="锁定" /><input type="button" value="拒绝" /><input type="button" value="网站说明" /></td>);
+                html.push(<tr>{tableColItem}</tr>);
+            };
+
+        }
+
+        return (<div className="stat-table">
+            <h4>{this.props.TableTitle}</h4>
+            <table className="table table-striped table-hover table-bordered">
+                <tbody>
+                    {html}
+                </tbody>
+            </table>
+        </div>);
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理页面</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-theme.min.css">
+    <style>
+        body{background-color: whitesmoke}
+        header{    height: 40px;  background-color: cornflowerblue;  margin-bottom: 1em;}
+        .list-group-item{padding: 2px 15px;}
+        .nav-hide{display:none}
+        .left-nav {cursor: pointer;text-align: center}
+        .left-nav h5 {padding: 5px 0em;  background-color: cadetblue;  color: white;  font-size: 14px;  letter-spacing: 0.5em;}
+        .left-nav a{font-size: 12px;color:black}
+        .list-group-item{background-color: #faebcc}
+
+        .right-warp{background-color: white;padding: 1em 2em}
+        .stat-table{    padding: 1em 1em;  border: 2px solid;  border-radius: 1em;}
+        .stat-table h4{text-align: center}
+        #handleFreshTableBtn{float: right}
+        .selected{background-color: darkorange;color: white;font-size: 500}
+        .right-head img{height: 8em;width: 100%;margin-bottom: 1em}
+        .nice-dialog{ display: none;   width: 30em;  height: 15em;  background-color: #2e6da4;  position: fixed;  left: 35%;  top: 30%;    border: 1px solid #2e6da4;
+            box-shadow: 5px 5px 10px;}
+        .dialog-infowarp{height: 70%;padding-top: 2em;text-align:center;color: white}
+        .dialog-btn{}
+        .dialog-btn button{margin-left: 7em}
+        .dialog-close{float: right;cursor: pointer}
+        input[type=button]{border-radius:0px}
+        .table-col-name{background-color: darkcyan;
+            color: white;}
+    </style>
+</head>
+<body>
+<header style="height: 40px"><span style="font-size: 2em;margin-left: 2em">网站管理后台<%= title %></span></header>
+<div class="container" >
+<div class="row">
+    <div id = "leftNavBarContainer" class="col-md-2">
+
+    </div>
+    <div class="col-md-10 right-warp" style="height: 1600px">
+        <div class="right-head"><img src="http://img3.imgtn.bdimg.com/it/u=3093510935,3806129624&fm=21&gp=0.jpg" /></div>
+        <div id="StatTable"></div>
+        <div id="NiceDialogContainer"></div>
+        <hr>
+        <div><a href="tencent://message/?uin=3278192278&Site=www.ete.cn&Menu=yes"> 测试qq</a></div>
+    </div>
+</div>
+</div>
+
+
+
+<script src="/lib/jquery-1.9.1.min.js" type="text/javascript"></script>
+<!-- <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<script src="/lib/React/react.min.js" type="text/javascript"></script>
+<script src="/lib/React/JSXTransformer.js" type="text/javascript"></script>
+<script src="/reactComponent/tableComponent.js" type="text/jsx"></script>
+<script type="text/jsx">
+
+let ajaxData = {"url":'<%= postUrl %>',"method":"post","data":"","dataType":"json"};
+let mytable = React.render(
+        <MyTable tableStyle={{"tableCategory":"WithOption"}} ajaxData={ajaxData} /> ,
+        document.getElementById('StatTable')
+);
+let leftNavbar = React.render(
+        <MyNavBar /> ,
+        document.getElementById('leftNavBarContainer')
+);
+
+
+
+$(".left-nav h5").click(function(){
+    $(this).next().toggle(200,function(){
+
+    });
+});
+$(".wzgl").click(function(){
+    $(".left-nav li").removeClass("selected");
+    $(this).addClass("selected");
+
+    var posturl=$(this).attr("posturl"),postdata=$(this).attr("postdata"),posttable=$(this).attr("posttable"),TableCol="",TableItemName="",TableTitle="";
+    console.log(posttable);
+    switch (posttable)
+    {
+        case "wzz":
+            TableCol="网站主,注册日期,域名,联系电话,QQ,网站类别,审核状态,操作";
+            TableItemName="web_owner_name,web_sign_date,web_domain,web_owner_phone,web_owner_qq,web_category,web_register_state";
+            TableTitle="网站主信息";
+            break;
+        case "flow":
+            TableCol="日期,网站主,媒介成员,CPA,富媒体,CPC,CPM,网站IP";
+            TableItemName="date,web_owner,web_owner,CPA,fumeiti,CPC,CPM,web_ip";
+            TableTitle="流量统计信息"
+            break;
+        default :
+            break;
+    }
+    React.render(
+            <MyTable posturl={posturl} postdata={postdata} TableCol={TableCol} TableItemName={TableItemName} TableTitle={TableTitle} />,
+            document.getElementById('StatTable')
+    );
+    $("#handleFreshTableBtn").click();
+
+});
+$(".llgl").click(function(){
+    $(".left-nav li").removeClass("selected");
+    $(this).addClass("selected");
+    var posturl=$(this).attr("posturl"),postdata=$(this).attr("postdata"),posttable=$(this).attr("posttable"),TableCol="",TableItemName="",TableTitle="";
+    console.log(posttable);
+    switch (posttable)
+    {
+        case "wzz":
+            TableCol="网站主,注册日期,域名,联系电话,QQ,网站类别,审核状态,操作";
+            TableItemName="web_owner_name,web_sign_date,web_domain,web_owner_phone,web_owner_qq,web_category,web_register_state";
+            TableTitle="网站主信息";
+            break;
+        case "flow":
+            TableCol="日期,网站主,媒介成员,CPA,富媒体,CPC,CPM,网站IP";
+            TableItemName="date,web_owner,web_owner,CPA,fumeiti,CPC,CPM,web_ip";
+            TableTitle="流量统计信息"
+            break;
+        default :
+            break;
+    }
+    React.render(
+            <StatTableNormal ajaxData={ajaxData} />,
+            document.getElementById('StatTable')
+    );
+    $("#handleFreshTableBtn").click();
+
+});
+$("#wzzBMP").click(function(){
+    React.render(
+            <StatTable posturl="/wzz/getWebSiteInfo" postdata="{'aa':'bb'}" TableCol="网站主,注册日期,联系电话,QQ,网站类别,审核状态" TableItemName="web_owner_name,web_sign_date,web_owner_phone,web_owner_qq,web_category,web_register_state" TableTitle="网站主信息" />,
+            document.getElementById('StatTable')
+    );
+    $("#handleFreshTableBtn").click();
+});
+
+</script>
+</body>
+</html>

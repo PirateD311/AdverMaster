@@ -1,0 +1,1 @@
+[2016-09-07 22:18:55.727] [INFO] normal - ::1 - - "GET /lib/bootstrap/dist/css/bootstrap.min.css HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
