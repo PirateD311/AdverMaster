@@ -17,7 +17,7 @@
         .left-nav a{font-size: 12px;color:black}
         .list-group-item{background-color: #faebcc}
 
-        .right-warp{background-color: white;padding: 1em 2em}
+        .right-warp{background-color: white;padding: 1em 2em;min-height: 800px}
         .stat-table{    padding: 1em 1em;  border: 2px solid;  border-radius: 1em;}
         .stat-table h4{text-align: center}
         #handleFreshTableBtn{float: right}
@@ -36,20 +36,7 @@
 </head>
 <body>
 <header style="height: 40px"><span style="font-size: 2em;margin-left: 2em">网站管理后台<%= title %></span></header>
-<div class="container" >
-<div class="row">
-    <div id = "leftNavBarContainer" class="col-md-2">
-
-    </div>
-    <div class="col-md-10 right-warp" style="height: 1600px">
-        <div class="right-head"><img src="http://img3.imgtn.bdimg.com/it/u=3093510935,3806129624&fm=21&gp=0.jpg" /></div>
-        <div id="StatTable"></div>
-        <div id="NiceDialogContainer"></div>
-        <hr>
-        <div><a href="tencent://message/?uin=3278192278&Site=www.ete.cn&Menu=yes"> 测试qq</a></div>
-    </div>
-</div>
-</div>
+<div id="MainWarp"></div>
 
 
 
@@ -57,88 +44,27 @@
 <!-- <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
 <script src="/lib/React/react.min.js" type="text/javascript"></script>
 <script src="/lib/React/JSXTransformer.js" type="text/javascript"></script>
+<script src="/reactComponent/ReactUtil.js" type="text/javascript"></script>
 <script src="/reactComponent/tableComponent.js" type="text/jsx"></script>
 <script type="text/jsx">
-
+React.render(
+        <WZZBMP />,
+        document.getElementById("MainWarp")
+);
 let ajaxData = {"url":'<%= postUrl %>',"method":"post","data":"","dataType":"json"};
+let tableStyle = '<%- JSON.stringify(tableStyle) %>';
+tableStyle = JSON.parse(tableStyle);
+console.log(tableStyle);
+/*
 let mytable = React.render(
-        <MyTable tableStyle={{"tableCategory":"WithOption"}} ajaxData={ajaxData} /> ,
+        <MyTable tableStyle={tableStyle} ajaxData={ajaxData} /> ,
         document.getElementById('StatTable')
 );
-let leftNavbar = React.render(
-        <MyNavBar /> ,
-        document.getElementById('leftNavBarContainer')
-);
+*/
 
 
 
-$(".left-nav h5").click(function(){
-    $(this).next().toggle(200,function(){
 
-    });
-});
-$(".wzgl").click(function(){
-    $(".left-nav li").removeClass("selected");
-    $(this).addClass("selected");
-
-    var posturl=$(this).attr("posturl"),postdata=$(this).attr("postdata"),posttable=$(this).attr("posttable"),TableCol="",TableItemName="",TableTitle="";
-    console.log(posttable);
-    switch (posttable)
-    {
-        case "wzz":
-            TableCol="网站主,注册日期,域名,联系电话,QQ,网站类别,审核状态,操作";
-            TableItemName="web_owner_name,web_sign_date,web_domain,web_owner_phone,web_owner_qq,web_category,web_register_state";
-            TableTitle="网站主信息";
-            break;
-        case "flow":
-            TableCol="日期,网站主,媒介成员,CPA,富媒体,CPC,CPM,网站IP";
-            TableItemName="date,web_owner,web_owner,CPA,fumeiti,CPC,CPM,web_ip";
-            TableTitle="流量统计信息"
-            break;
-        default :
-            break;
-    }
-    React.render(
-            <MyTable posturl={posturl} postdata={postdata} TableCol={TableCol} TableItemName={TableItemName} TableTitle={TableTitle} />,
-            document.getElementById('StatTable')
-    );
-    $("#handleFreshTableBtn").click();
-
-});
-$(".llgl").click(function(){
-    $(".left-nav li").removeClass("selected");
-    $(this).addClass("selected");
-    var posturl=$(this).attr("posturl"),postdata=$(this).attr("postdata"),posttable=$(this).attr("posttable"),TableCol="",TableItemName="",TableTitle="";
-    console.log(posttable);
-    switch (posttable)
-    {
-        case "wzz":
-            TableCol="网站主,注册日期,域名,联系电话,QQ,网站类别,审核状态,操作";
-            TableItemName="web_owner_name,web_sign_date,web_domain,web_owner_phone,web_owner_qq,web_category,web_register_state";
-            TableTitle="网站主信息";
-            break;
-        case "flow":
-            TableCol="日期,网站主,媒介成员,CPA,富媒体,CPC,CPM,网站IP";
-            TableItemName="date,web_owner,web_owner,CPA,fumeiti,CPC,CPM,web_ip";
-            TableTitle="流量统计信息"
-            break;
-        default :
-            break;
-    }
-    React.render(
-            <StatTableNormal ajaxData={ajaxData} />,
-            document.getElementById('StatTable')
-    );
-    $("#handleFreshTableBtn").click();
-
-});
-$("#wzzBMP").click(function(){
-    React.render(
-            <StatTable posturl="/wzz/getWebSiteInfo" postdata="{'aa':'bb'}" TableCol="网站主,注册日期,联系电话,QQ,网站类别,审核状态" TableItemName="web_owner_name,web_sign_date,web_owner_phone,web_owner_qq,web_category,web_register_state" TableTitle="网站主信息" />,
-            document.getElementById('StatTable')
-    );
-    $("#handleFreshTableBtn").click();
-});
 
 </script>
 </body>

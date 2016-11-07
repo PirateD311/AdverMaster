@@ -41,7 +41,6 @@ app.use('/wzzbmp',require("./routes/wzzbmp"));
 app.use('/getWebSiteInfo',require("./routes/interface/getWebSiteInfo"));
 app.use('/wzzbmp/getWebSiteInfo',require("./routes/interface/getWebSiteInfo"));
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
