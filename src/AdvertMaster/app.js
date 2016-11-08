@@ -35,7 +35,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/login',login);
 app.use('/wzzbmp',require("./routes/wzzbmp"));
-
+app.use('/signup',require("./routes/signup"));
+app.use('/register',require("./routes/register"));
 /*Post Interface
 * */
 app.use('/getWebSiteInfo',require("./routes/interface/getWebSiteInfo"));

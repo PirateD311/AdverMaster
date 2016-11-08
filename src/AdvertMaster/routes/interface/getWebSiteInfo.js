@@ -2,6 +2,7 @@
  * Created by liuxun on 16/9/10.
  */
 const router = require("express").Router();
+const DBManager = require("../../lib/database/MongoDBManager").DBManager;
 var dbHandle = {
     qryAllWzz :function(){
         var data = [
@@ -69,11 +70,19 @@ router.post('/:option?',function(req,res,next){
                 break;
             case "verifyWebApplication":
                 console.log("verifyWebApplication");
-                resultJson.tableStyle.tableTitle = "网站主审核";
-                resultJson.tableStyle.tableCategory = 2;
-                resultJson.tableStyle.colTitle = "日期,网站主,媒介成员,CPA,富媒体,CPC,CPM,网站IP";
-                resultJson.tableStyle.colKey = ["sWebRegisterDate","sOwnerUserName","sMeijie","nCPA","nFumeiti","nCPC","nCPM","sWebIp"];
-                return res.send(resultJson);
+                DBManager.getWebFlowStatModel().find(function(err,doc){
+                    if(err){
+                        resultJson.code = 2;
+                        return res.send(resultJson);
+                    }else{
+                        resultJson.tableStyle.tableTitle = "网站主审核";
+                        resultJson.tableStyle.tableCategory = 2;
+                        resultJson.tableStyle.colTitle = "申请日志,网站主,IP,域名,许可证,联系电话,审核状态";
+                        resultJson.tableStyle.colKey = ["sWebRegisterDate","sOwnerUserName","sWebIp","sWebDomain","sWebXK","sWebOwnerPhone","nWebState"];
+                        resultJson.data = doc;
+                        return res.send(resultJson);
+                    }
+                })
                 break;
             default :
                 resultJson.code = 0;

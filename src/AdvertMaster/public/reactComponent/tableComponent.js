@@ -81,7 +81,7 @@ let MyTable = React.createClass({
 
         if(!Array.isArray(aColKey))
             aColKey = aColKey.split(',');
-        let sColName = this.props.tableStyle.colName||this.state.tableStyle.colTitle;
+        let sColName = this.props.tableStyle.colTitle||this.state.tableStyle.colTitle;
         let aColTitle ;
         if(Array.isArray(sColName))
             aColTitle = sColName;

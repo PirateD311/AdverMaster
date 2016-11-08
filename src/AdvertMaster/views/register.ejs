@@ -23,20 +23,9 @@
         <a class="navbar-brand" href="#">广告联盟</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-        <% if(logged_in) {%>
+
             <div class="navbar-right navbar-brand">已登录</div>
-        <% }else{%>
-            <form class="navbar-form navbar-right" role="form" action="/login" method="post">
-                <div class="form-group">
-                    <input name="username" type="text" placeholder="UserName" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input name="password" type="password" placeholder="Password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-success">登录</button>
-                <input onclick="$('#SignUpForm').toggle()" type="button" value="注册" class="btn btn-success"><a></a></input>
-            </form>
-        <% }%>
+
 
 
     </div><!--/.navbar-collapse -->
@@ -46,7 +35,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
+        <h1>签约条款</h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
     </div>
@@ -55,20 +44,24 @@
 <div class="container">
     <!-- Example row of columns -->
     <div class="row">
-        <div class="col-md-4">
-            <h2>网站主管理界面</h2>
-            <p>用以管理和操作广告平台的网站客户 </p>
-            <p><a class="btn btn-default" href="/wzzbmp" role="button">View details &raquo;</a></p>
+        <div class="col-md-2">
+
         </div>
-        <div class="col-md-4">
-            <h2>广告统计测试页</h2>
-            <p>广告展示，测试统计数据</p>
-            <p><a id="AdvertShow" class="btn btn-default"  role="button">展示广告 &raquo;</a></p>
+        <div class="col-md-8">
+            <div>
+                <form method="post" action="/register">
+                    <h4>广告服务签约</h4>
+                    <input class="form-control" name="ip" type="text" placeholder="网站ip" required="required" /><br>
+                    <input class="form-control" name="domain" type="text" placeholder="网站域名" required="required" /><br>
+                    <input class="form-control" name="category" type="text" placeholder="网站类型" required="required" /><br>
+                    <input class="form-control" name="idcard" type="text" placeholder="身份证号" required="required" /><br>
+                    <input class="form-control" name="" type="text" placeholder="许可证号" required="required" /><br>
+                    <input class="btn btn-success" type="submit" value="登记"  />
+                </form>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-default" href="/register" role="button">View details &raquo;</a></p>
+        <div class="col-md-2">
+
         </div>
     </div>
 
@@ -79,17 +72,6 @@
     </footer>
 </div> <!-- /container -->
 
-<div id="SignUpForm" style="width: 300px;background-color:darkcyan;padding: 0.5em;position: fixed;left: 33%;top:25%;display: none">
-    <form method="post" action="/signup">
-        <h4>会员注册</h4>
-        <input class="form-control" name="username" type="text" placeholder="用户名" required="required" /><br>
-        <input class="form-control" name="password" type="password" placeholder="密码" required="required" /><br>
-        <input class="form-control" name="phone" type="tel" placeholder="电话" required="required" /><br>
-        <input class="form-control" name="email" type="email" placeholder="邮箱" required="required" /><br>
-        <input class="form-control" name="qq" type="text" placeholder="qq" required="required" /><br>
-        <input class="btn btn-success" type="submit" value="注册"  />
-    </form>
-</div>
 <footer></footer>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
