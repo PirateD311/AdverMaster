@@ -19,7 +19,8 @@ router.post('/',function(req,res,next){
             return res.send("注册失败！用户已存在");
         }
         req.session.logged_in = true;
-        return res.render("index",{logged_in:true});
+        req.session.logged_username = req.body.username;
+        return res.render("index",{logged_in:true,logged_username:req.body.username});
     });
 })
 

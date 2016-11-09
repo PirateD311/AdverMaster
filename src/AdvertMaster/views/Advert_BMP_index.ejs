@@ -16,9 +16,8 @@
         .left-nav h5 {padding: 5px 0em;  background-color: cadetblue;  color: white;  font-size: 14px;  letter-spacing: 0.5em;}
         .left-nav a{font-size: 12px;color:black}
         .list-group-item{background-color: #faebcc}
-
         .right-warp{background-color: white;padding: 1em 2em;min-height: 800px}
-        .stat-table{    padding: 1em 1em;  border: 2px solid;  border-radius: 1em;}
+        .stat-table{    padding: 1em 1em 4em 1em; min-height: 200px; border: 2px solid;  border-radius: 1em;}
         .stat-table h4{text-align: center}
         #handleFreshTableBtn{float: right}
         .selected{background-color: darkorange;color: white;font-size: 500}
@@ -35,7 +34,38 @@
     </style>
 </head>
 <body>
-<header style="height: 40px"><span style="font-size: 2em;margin-left: 2em">网站管理后台<%= title %></span></header>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">广告联盟</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <% if(logged_in) {%>
+            <div class="navbar-right navbar-brand">欢迎 <%=logged_username %></div>
+            <% }else{%>
+            <form class="navbar-form navbar-right" role="form" action="/login" method="post">
+                <div class="form-group">
+                    <input name="username" type="text" placeholder="UserName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input name="password" type="password" placeholder="Password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">登录</button>
+                <input onclick="$('#SignUpForm').toggle()" type="button" value="注册" class="btn btn-success"><a></a></input>
+            </form>
+            <% }%>
+
+
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+<header></header>
 <div id="MainWarp"></div>
 
 
@@ -51,10 +81,7 @@ React.render(
         <WZZBMP />,
         document.getElementById("MainWarp")
 );
-let ajaxData = {"url":'<%= postUrl %>',"method":"post","data":"","dataType":"json"};
-let tableStyle = '<%- JSON.stringify(tableStyle) %>';
-tableStyle = JSON.parse(tableStyle);
-console.log(tableStyle);
+
 /*
 let mytable = React.render(
         <MyTable tableStyle={tableStyle} ajaxData={ajaxData} /> ,

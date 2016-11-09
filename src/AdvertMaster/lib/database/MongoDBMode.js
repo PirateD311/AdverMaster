@@ -11,6 +11,18 @@ var UserBase = mongoose.model('UserBase',new Schema({
     sEmail:{type:String,unique:true},
     sUserPhone:{type:String,unique:true},
     sUserQQ:{type:String,unique:true},
+    sUserType:Number,
+    aUserWebFlowStat:[{
+        sOwnerUserName:{type:String},
+        sWebIp:{type:String},
+        sWebDomain:{type:String},
+        sWebRegisterDate:String,
+        nWebState:Number,
+        nWebCategory:Number,
+        nCPA:Number,
+        nCPC:Number,
+        nCPM:Number
+    }]
 }));
 
 var WebFlowStat = mongoose.model('WebFlowStat',new Schema({
@@ -18,7 +30,7 @@ var WebFlowStat = mongoose.model('WebFlowStat',new Schema({
     sWebIp:{type:String,index:true,unique:true},
     sWebDomain:{type:String,index:true,unique:true},
     sWebRegisterDate:String,
-    nWebState:Number,
+    sWebState:String,
     nWebCategory:Number,
     nCPA:Number,
     nCPC:Number,

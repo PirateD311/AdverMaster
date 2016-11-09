@@ -17,8 +17,8 @@ router.post('/',function(req,res,next){
             sOwnerUserName:doc.sUserName,
             sWebIp:req.body.ip,
             sWebDomain:req.body.domain,
-            sWebRegisterDate:new Date().toDateString(),
-            nWebState:0,
+            sWebRegisterDate:new Date().toLocaleDateString(),
+            sWebState:CONST.SITE_STATE_UNACTIVE,
             nCPA:0,
             nCPC:0,
             nCPM:0
@@ -38,8 +38,7 @@ router.get('/',function(req,res,next){
         //return res.send("用户未登录！无法操作广告登记")
         return res.render("register");
     }else{
-        //return res.send("用户未登录！无法操作广告登记")
-        return res.render("register");
+        return res.send("用户未登录！无法操作广告登记")
     }
 });
 

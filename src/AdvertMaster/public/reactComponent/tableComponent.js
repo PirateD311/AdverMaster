@@ -96,12 +96,11 @@ let MyTable = React.createClass({
         let aTableBody = [];
         //begin添加标题行
         aTd.push(aColTitle.map((res) => (<td>{res}</td>)));
-
-        if(OPTION_TABLE == this.props.tableStyle.tableCategory){
+        if(TABLE_CATEGORY_WITHOPTION == this.props.tableStyle.tableCategory){
             console.log("It's option table.");
             aTd.push((<td>操作</td>))
         }
-        aTableBody.push((<tr>{aTd}</tr>));
+        aTableBody.push((<tr style={{"color":"white","background-color":"#428bca"}}>{aTd}</tr>));
 
         //end添加标题行
         //begin遍历数据，逐行添加数据
@@ -109,7 +108,7 @@ let MyTable = React.createClass({
             aTd = [];
             aColKey.map((colkey) =>{aTd.push((<td>{tabledata[colkey]}</td>))});//从数据中取出每一列应展示的值。es6新写法
 
-            if(this.props.tableStyle && OPTION_TABLE == this.props.tableStyle.tableCategory){//如果表格类型为带操作扭得，在末尾添加操作扭
+            if(this.props.tableStyle && TABLE_CATEGORY_WITHOPTION == this.props.tableStyle.tableCategory){//如果表格类型为带操作扭得，在末尾添加操作扭
                 aTd.push((<td><OptionWzzBtn  data={tabledata} btnName="审批" /></td>))
             }
 
@@ -149,16 +148,12 @@ let OptionWzzBtn=React.createClass({
     handleSubmit:function(){
         console.log("ModifyBtn Submit.");
         var postData={
-            "web_ip":this.props.data.web_ip,
+            "web_ip":this.props.data.sWebIp,
         };
         switch (this.props.btnName){
             case "审批":
-                postData.web_register_state=1;
-                postData.web_state=1;
-                console.log(this.props.data.web_ip);
-                var addFlowStatData={"web_owner":this.props.data.web_owner_name,"web_ip":this.props.data.web_ip,"web_domain":this.props.web_domain};
-                $.post("/gly/addFlowStat",addFlowStatData,function(res){
-
+                $.post("/getWebSiteInfo/acceptApply",postData,function(res){
+                    alert(res);
                 });
                 break;
             case "暂停":
@@ -175,12 +170,7 @@ let OptionWzzBtn=React.createClass({
             default :break;
         };
         console.log(JSON.stringify(postData));
-        $.post("/gly/editWzz",postData,function(res){
-            if(res.code==1)
-                alert("操作成功！");
-            else
-                alert("操作失败！");
-        });
+
         $("#NiceDialog").hide();
         $("#handleFreshTableBtn").click();
     },
@@ -246,7 +236,7 @@ let MyNavBar = React.createClass({
                 <div className="left-nav">
                     <h5>系统管理</h5>
                     <ul className="list-group">
-                        <li data-url="/getWebSiteInfo" className="list-group-item selected"><a target="main">系统首页</a></li>
+                        <li data-url="/getWebSiteInfo/qryAllFlowStat" className="list-group-item selected"><a target="main">系统首页</a></li>
                         <li className="list-group-item "><a target="main">新站投放</a></li>
                         <li className="list-group-item"><a target="main">恢复投放</a></li>
                         <li className="list-group-item"><a target="main">佣金查询</a></li>
@@ -290,10 +280,6 @@ let WZZBMP = React.createClass({
     },
     changeUrl:function(url){
         let self =this;
-        if(this.state.url === url)
-        {
-            return ;
-        }
         $.ajax({
             "url":url,
             "method":"post",

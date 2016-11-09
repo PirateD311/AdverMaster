@@ -20,8 +20,9 @@ router.post('/',function(req,res,next){
         }else{
             req.session.logged_in = true;
             req.session.logged_userid = doc._id.toString();
-            console.log("logged_userid:"+doc._id.toString());
-            return res.render("index",{logged_in:true});
+            req.session.logged_username = doc.sUserName;
+            console.log("logged_username:"+doc.sUserName);
+            return res.render("index",{logged_in:true,logged_username:doc.sUserName});
         }
 
     });

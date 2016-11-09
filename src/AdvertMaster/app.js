@@ -5,10 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var log4js = require('./lib/myutil.js').log4js;
+var Util = require('./lib/myutil.js');
+var log4js = Util.log4js;
 var log = log4js.getLogger('normal');
 log.setLevel('INFO');
-
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -41,6 +41,7 @@ app.use('/register',require("./routes/register"));
 * */
 app.use('/getWebSiteInfo',require("./routes/interface/getWebSiteInfo"));
 app.use('/wzzbmp/getWebSiteInfo',require("./routes/interface/getWebSiteInfo"));
+app.use('/statFlow',require("./routes/interface/statFlow"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

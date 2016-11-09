@@ -4,6 +4,10 @@
  * 通用方法定义
  */
 //const value
-const NORMAL_TABLE = 1;
-const OPTION_TABLE = 2;
+const SITE_STATE_UNACTIVE = "未激活";
+const SITE_STATE_NORMAL = "正常";
+const SITE_STATE_LOCK = "锁定";
+
+const TABLE_CATEGORY_NORMAL = "normal";
+const TABLE_CATEGORY_WITHOPTION = "option";
 //const value
