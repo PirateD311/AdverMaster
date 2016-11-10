@@ -109,7 +109,7 @@ let MyTable = React.createClass({
             aColKey.map((colkey) =>{aTd.push((<td>{tabledata[colkey]}</td>))});//从数据中取出每一列应展示的值。es6新写法
 
             if(this.props.tableStyle && TABLE_CATEGORY_WITHOPTION == this.props.tableStyle.tableCategory){//如果表格类型为带操作扭得，在末尾添加操作扭
-                aTd.push((<td><OptionWzzBtn  data={tabledata} btnName="审批" /></td>))
+                aTd.push((<td><OptionWzzBtn  data={tabledata} btnName="审批" /><OptionWzzBtn  data={tabledata} btnName="锁定" /></td>))
             }
 
             aTableBody.push((<tr>{aTd}</tr>));//添加本行至tBady
@@ -152,14 +152,16 @@ let OptionWzzBtn=React.createClass({
         };
         switch (this.props.btnName){
             case "审批":
-                $.post("/getWebSiteInfo/acceptApply",postData,function(res){
-                    alert(res);
+                $.post("/getWebSiteInfo/activeSite",postData,function(res){
+                    alert(res.info);
                 });
                 break;
             case "暂停":
                 postData.web_register_state=2;
             case "锁定":
-                postData.web_register_state=3;
+                $.post("/getWebSiteInfo/lockSite",postData,function(res){
+                    alert(res.info);
+                });
                 break;
             case "拒绝":
                 postData.web_register_state=4;
@@ -237,7 +239,7 @@ let MyNavBar = React.createClass({
                     <h5>系统管理</h5>
                     <ul className="list-group">
                         <li data-url="/getWebSiteInfo/qryAllFlowStat" className="list-group-item selected"><a target="main">系统首页</a></li>
-                        <li className="list-group-item "><a target="main">新站投放</a></li>
+                        <li className="list-group-item "><a href="/register" target="main">新站投放</a></li>
                         <li className="list-group-item"><a target="main">恢复投放</a></li>
                         <li className="list-group-item"><a target="main">佣金查询</a></li>
                         <li className="list-group-item"><a target="_blank">KPI登录</a></li>
@@ -245,12 +247,11 @@ let MyNavBar = React.createClass({
                     </ul>
                     <h5>网站管理</h5>
                     <ul className="list-group nav-hide">
-                        <li data-url="/getWebSiteInfo/verifyWebApplication" className="list-group-item"><a target="main">网站主审核</a></li>
-                        <li data-url="/getWebSiteInfo/allWebSite" className="list-group-item" ><a target="main">所有网站</a></li>
+                        <li data-url="/getWebSiteInfo/qryAllSiteInfo" className="list-group-item" ><a target="main">所有网站</a></li>
                         <li data-url="/getWebSiteInfo/verifyWebApplication"  className="list-group-item wzgl"><a target="main">待审核网站</a></li>
-                        <li data-url="/getWebSiteInfo/allUser"   className="list-group-item "><a  target="main">正常会员</a></li>
                         <li data-url="/getWebSiteInfo/allUser" className="list-group-item " className="list-group-item wzgl"><a  target="_blank">锁定网站</a></li>
-                        <li className="list-group-item"><a  target="_blank">所有会员</a></li>
+                        <li data-url="/getWebSiteInfo/qryAllUser" className="list-group-item"><a  target="_blank">所有会员</a></li>
+                        <li data-url="/getWebSiteInfo/qryAllUser"   className="list-group-item "><a  target="main">正常会员</a></li>
                     </ul>
                     <h5>广告管理</h5>
                     <ul className="list-group nav-hide">

@@ -11,7 +11,7 @@ var UserBase = mongoose.model('UserBase',new Schema({
     sEmail:{type:String,unique:true},
     sUserPhone:{type:String,unique:true},
     sUserQQ:{type:String,unique:true},
-    sUserType:Number,
+    sUserType:{type:String},
     aUserWebFlowStat:[{
         sOwnerUserName:{type:String},
         sWebIp:{type:String},

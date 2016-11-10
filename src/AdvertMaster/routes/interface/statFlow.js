@@ -19,13 +19,6 @@ router.post('/',function(req,res,next){
     var sHostName = req.body.hostname;
 
     //Check HostName
-    var aTrustHost = ["192.168.5.128","192.168.5.120"];
-    var bIsTrustHost = false;
-    if(!Util.isInArray(sHostName,aTrustHost)[0]){
-        console.log("Host:%s is not trust.",sHostName);
-        return res.send("Your are not trust.");
-    }
-
     DBManager.getWebFlowStatModel().findOne({"sWebIp":sHostName,sWebState:CONST.SITE_STATE_NORMAL},function(err,doc){
         if(err)throw err;
         if(!doc){
