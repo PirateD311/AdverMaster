@@ -6,8 +6,8 @@ const router = require("express").Router();
 router.get('/:type?',function(req,res,next){
     //鉴权begin
     if(!req.session.logged_in){
-        res.render("Advert_BMP_index",{logged_in:true,logged_username:"测试"});
-        //res.send("用户未登录，请登陆后访问"+'<a href="/">登录</a>');
+        //res.render("Advert_BMP_index",{logged_in:true,logged_username:"测试"});
+        res.send("用户未登录，请登陆后访问"+'<a href="/">登录</a>');
     }else{
         res.render("Advert_BMP_index",{logged_in:true,logged_username:req.session.logged_username});
     }
