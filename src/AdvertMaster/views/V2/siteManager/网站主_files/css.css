@@ -1,0 +1,232 @@
+/* CSS Document */
+body{margin:0px;padding:0px;color:#888;font-size:14px;line-height:26px; font-family: "微软雅黑","宋体",Verdana, Geneva, sans-serif; background:#f4f4f4;}
+div,dl,dt,dd,ul,li,p,h1,h2,h3{padding:0; margin:0;}
+ol,ul,li{list-style-type:none;}
+
+.clear{ clear:both;}
+h1{ font-size:14px;}
+img{vertical-align:top;border:0;padding:0px;margin:0px;}
+a {color:#333;text-decoration:none;}
+
+.main{width:100%;}
+/*左边栏*/
+.leftside{width:200px;background:#2b3a41; position:absolute; left:0 ;z-index:1; height:100%;}
+.sidenav{width:200px;background:#2b3a41; position:relative;}
+.sidenav li{z-index:2; position:relative;}
+.sidenav li a{height:69px;display:block;text-decoration:none;}
+.sidenav li:hover a{ background:url(../img/navbg.jpg) no-repeat;height:69px;width:200px;}
+.sidenav li.on a{background:url(../img/navbg.jpg) no-repeat;height:69px;width:200px;}
+.sidenav .hover{width:200px; height:69px; position:absolute;background:url(../img/navbg.jpg) no-repeat;z-index:1;}
+
+/*右边栏头部*/
+.rightside{width:100%;background:#f4f4f4; position:absolute; height:100%;}
+.rightmain{margin-left:200px;}
+.righttop{height:85px; background:#FFFFFF;}
+.bulletin{ padding-top:20px; float:left;}
+.bulletinpic{padding-left:20px; float:left;}
+.bulletintxt{ margin-left:10px;float:left;width:30%; padding-top:3px;}
+.bulletintxt a{ font-family: "微软雅黑"; color:#ff7575; font-size:18px;}
+.personal{ padding-top:20px; float:right; padding-right:50px; width:200px;}
+.personalpic{float:left;}
+.personalname{ margin-left:10px;float:left;padding-top:3px;}
+.personalname a{ font-family: "微软雅黑"; color:#2b3a41; font-size:18px;}
+.content{width:100%; margin:0 auto; text-align:center; padding-top:20px;}
+
+/*网站主首页*/
+.detailed{width: 90%; margin:0 auto;text-align:center;}
+.detailsbg{width:28%;height:274px; background:#fff;border-radius:10px; float:left; margin-left:5%; padding-top:2%;}
+.zong{ font-size:24px;padding-top:30px; padding-bottom:30px;}
+.zong a{ color:#fea1a1;}
+.mx{ font-size:15px;}
+.mx a{color:#fea1a1;}
+.zxgg{ font-size:24px;padding-top:25px; padding-bottom:25px;}
+.zxgg a{ color:#ff5252;}
+.ypay{width:100%; padding-top:25px;}
+.ypayw{width:30%;height:35px; background:#80b600; float:left;border-radius:10px; margin-left:10%;overflow:hidden;}
+.ypayw a{ float:left; padding-left:6%; padding-top:2px; color:#FFFFFF;}
+.ypays{width:30%;height:35px; background:#6b6b6b; float:right;border-radius:10px; margin-right:10%;}
+.ypays a{ float:left; padding-left:6%; padding-top:2px; color:#FFFFFF;}
+.tubiao{border-radius:90px;width:24px; height:24px; background:#FFFFFF; float:right; margin-top:5.5px; margin-right:6%;}
+.tubiao a{ color:#80b600; font-size:14px; padding-top:0px; padding-left:3px;}
+
+/*首页数据图表切换*/
+.tab1{width:96%;margin:70px auto 0px auto;}
+.menu{height:28px;float:right; margin-right:20px;}
+.menu li{float:left;width:40px;text-align:center;line-height:28px;height:28px;cursor:pointer;color:#666;font-size:14px;overflow:hidden;}
+.menu li.off{color:#336699;font-weight:bold;}
+.menudiv{border-top:0;background:#fefefe;border-radius:15px; margin-top:-30px;}
+.menudiv2{border-top:0;border-radius:15px; margin-top:-30px;}
+.menudiv div{padding:50px 20px 10px 20px;}
+
+
+/*分割线*/
+.fenge{padding-top:50px;}
+.tbname{ font-size:32px; font-family: "微软雅黑"; float:left;padding-left:35px; font-weight:bold;}
+.tbname a{color:#2b3a41;}
+.tbdata{ font-size:16px; font-family:"微软雅黑"; float:left; padding-left:20px; font-weight:bold; padding-top:5px;}
+.tbdata a{color:#2b3a41;}
+.fengetop{width:98%; float:right; border-bottom:#dedede 1pt solid; padding-top:15px;}
+.fengedi{width:98%; float:right; border-top:#fff 1pt solid;}
+.databg{width:98%;margin-top:35px;}
+.datan{height:50px; background:#fff;border-radius:8px; margin-bottom:10px;text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.mxdata{ float:left; width:40%; text-align:left; padding-left:15px; padding-top:10px; font-size:24px; color:#2b3a41;}
+.income{ float:left; width:40%; text-align:left;padding-left:15px; padding-top:10px; font-size:24px; color:#2b3a41;}
+
+
+/*网站管理*/
+.tab2{width:96%;margin:20px auto 0px auto;}
+.menu2{height:28px;float:left; margin-right:20px;}
+.menu2 li{float:left;width:100px;text-align:center;line-height:28px;height:35px;cursor:pointer;color:#666;font-size:14px;overflow:hidden; margin-left:20px;background:#FFFFFF;border-radius:10px 10px 0px 0px;}
+.menu2 li.off{color:#336699;font-weight:bold;}
+.menudiv22{border-top:0;border-radius:15px; margin-top:-30px;}
+.menudiv22 div{}
+.income2{ float:left; width:18%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;}
+.mxdata2{ float:left; width:18%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;}
+.mxdata2 a{ color:#0097de;}
+.menudiv3{border-top:0;background:#fff;border-radius:15px; margin-top:-1px; padding-top:20px; padding-left:20px; padding-bottom:25px;}
+.addsite{ margin:0 auto 20px auto;}
+.addsite1{ float:left; font-size:18px; margin-right:10px;}
+.addsite1 a{ color:red; font-size:24px; font-weight:bold; padding-top:5px;}
+.txtc{ font-size:18px; color:#333333; width:300px;;}
+.tjan{width:100px; height:50px; background:#66CC00; color:#FFFFFF; font-size:18px; font-weight:bold; border:none; cursor:pointer;border-radius:10px;}
+
+
+/*广告管理*/
+.income3{ float:left; width:15%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;}
+.mxdata3{ float:left; width:15%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;}
+.mxdata3 a{ color:#0097de; margin-right:15px;}
+.black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 55%; 
+            height: 55%; 
+            padding: 20px; 
+            border: 10px solid #3c5967; 
+            background-color: #f4f4f4; 
+            z-index:1002; 
+            overflow: auto; 
+			border-radius:10px;
+			text-align:right;
+        } 
+.fengedm{padding-top:20px;}
+.tbnamedm{ font-size:18px; font-family: "微软雅黑"; float:left;padding-left:35px; font-weight:bold;}
+.tbnamedm a{color:#2b3a41;}
+.hqdmtxt{ font-size:18px; font-family: "微软雅黑"; float:left;padding-left:35px; font-weight:bold; margin-top:20px;}
+.tetys{ width:500px; height:100px;}
+.income4{ float:left; width:22%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;}
+.mxdata4{ float:left; width:22%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;}
+.mxdata4 a{ color:#0097de; margin-right:15px;}
+select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  border: solid 1px #999;
+  height:30px;
+  border-radius:5px;
+	
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+
+
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 14px;
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+.tjan2{width:120px; height:50px; background:#66CC00; color:#FFFFFF; font-size:18px; font-weight:bold; border:none; cursor:pointer;border-radius:10px;}
+
+
+/*财务报表*/
+.databg2{width:98%;margin-top:95px;}
+
+/*支付记录*/
+.income6{ float:left; width:18%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;}
+.mxdata6{ float:left; width:18%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;}
+.mxdata6 a{ color:#0097de; margin-right:15px;}
+
+/*个人信息*/
+.menudiv66{border-top:0;border-radius:15px; margin-top:70px;}
+.menudiv66 div{}
+
+
+/*历史公告*/
+.income7{ float:left; width:60%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41; text-align:left;}
+.mxdata7{ float:left; width:30%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41; text-align:right;}
+.mxdata7 a{ color:#0097de; margin-right:15px;}
+
+/*公告内容*/
+.notemain{ width:98%;background:#FFFFFF;border-radius:10px; margin:100px auto 0px auto; padding:20px; text-align:left;}
+.notemain a{ font-size:16px; color:#333333; line-height:30px;}
+.notezf a{font-size:20px; color:#2b3a41; line-height:30px;}
+.txtnote p{font-size:16px; color:#333333; line-height:30px;text-indent:2em;}
+.riqi,.notejiao{ text-align:right;}
+
+/*广告主首页*/
+.detailsbg2{width:28%;height:274px;border-radius:10px; float:left; margin-left:5%;}
+.income8{ float:left; width:13%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.mxdata8{ float:left; width:13%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.mxdata8 a{ color:#0097de; margin-right:15px;}
+.tbdata22{ font-size:16px; font-family:"微软雅黑"; float:left; margin-left:20px;font-weight:bold; padding:5px; background:#fff;border-radius:5px;}
+.tbdata22 a{color:#2b3a41;}
+.sousuoys{ height:25px; border:none; width:300px; font-size:18px; font-family:"微软雅黑"; float:left;color:#999;}
+.fdj{ width:25px; height:25px;background:url(../img/ss.png) no-repeat; border:none;cursor:pointer;}
+.databg3{width:98%;margin-top:115px;}
+
+
+/*广告管理*/
+.tbdata33{ font-size:16px; font-family:"微软雅黑"; float:left; margin-left:39px;font-weight:bold; padding:5px; background:#fff;border-radius:5px;}
+.tbdata33 a{color:#2b3a41;}
+
+
+/*数据报表*/
+.tjan3{width:60px; height:30px; background:#66CC00; color:#FFFFFF; font-size:18px; font-weight:bold; border:none; cursor:pointer;border-radius:3px; float:left;}
+.tjan4{width:60px; height:30px; background:#66CC00; color:#FFFFFF; font-size:18px; font-weight:bold; border:none; cursor:pointer;border-radius:3px; }
+.tjan5{width:100px; height:30px; background:#66CC00; color:#FFFFFF; font-size:18px; font-weight:bold; border:none; cursor:pointer;border-radius:3px; }
+.income9{ float:left; width:44.9%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;}
+.mxdata9{ float:left; width:22%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;}
+.mxdata9 a{ color:#fea1a1; margin-right:15px; font-weight:bold; font-size:24px;}
+
+
+/*我的充值*/
+.mxdata10{ float:left; width:18%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;}
+.mxdata10 a{ color:#fea1a1; margin-right:15px; font-weight:bold; font-size:24px;}
+
+
+/*广告设置*/
+.income11{ float:left; width:5%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.mxdata11{ float:left; width:5%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden; padding-bottom:10px; }
+.mxdata11 a{ color:#0097de; margin-right:15px;}
+.income12{ float:left; width:20%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+.mxdata12{ float:left; width:20%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;padding-bottom:10px;  }
+.mxdata12 a{ color:#0097de; margin-right:15px;}
+.income13{ float:left; width:8%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.mxdata13{ float:left; width:8%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;padding-bottom:10px;  }
+.mxdata13 a{ color:#0097de; margin-right:15px;}
+.income14{ float:left; width:8%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.mxdata14{ float:left; width:8%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden; padding-bottom:10px; }
+.mxdata14 a{ color:#66CC00; margin-right:15px;}
+.income15{ float:left; width:15%; text-align:left;padding-left:15px; padding-top:10px; font-size:18px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+.mxdata15{ float:left; width:15%; text-align:left; padding-left:15px; padding-top:10px; font-size:15px; color:#2b3a41;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;padding-bottom:10px;  }
+.mxdata15 a{ color:#0097de; margin-right:15px;}
+.datan2{height:74px; background:#fff;border-radius:8px; margin-bottom:10px;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;
+line-height: 74px;}

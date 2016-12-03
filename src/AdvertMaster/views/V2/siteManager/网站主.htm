@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0054)http://www.ffwap.com/index.php?r=siteMaster/site/index -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>网站主</title>
+<link href="./网站主_files/css.css" rel="stylesheet" type="text/css">
+
+<script src="./网站主_files/jquery.min.js"></script>
+<script type="text/javascript">
+function setTab(name,cursel){
+	cursel_0=cursel;
+	for(var i=1; i<=links_len; i++){
+		var menu = document.getElementById(name+i);
+		var menudiv = document.getElementById("con_"+name+"_"+i);
+		if(i==cursel){
+			menu.className="off";
+			menudiv.style.display="block";
+		}
+		else{
+			menu.className="";
+			menudiv.style.display="none";
+		}
+	}
+}
+function Next(){
+	cursel_0++;
+	if (cursel_0>links_len)cursel_0=1
+	setTab(name_0,cursel_0);
+}
+var name_0='one';
+var cursel_0=1;
+
+var links_len,iIntervalId;
+onload=function(){
+	var links = document.getElementById("tab1").getElementsByTagName('li')
+	links_len=links.length;
+	for(var i=0; i<links_len; i++){
+		links[i].onmouseover=function(){
+			clearInterval(iIntervalId);
+			this.onmouseout=function(){
+				iIntervalId = setInterval(Next,ScrollTime);;
+			}
+		}
+	}
+	document.getElementById("con_"+name_0+"_"+links_len).parentNode.onmouseover=function(){
+		clearInterval(iIntervalId);
+		this.onmouseout=function(){
+			iIntervalId = setInterval(Next,ScrollTime);;
+		}
+	}
+	setTab(name_0,cursel_0);
+	iIntervalId = setInterval(Next,ScrollTime);
+}
+</script>
+<style type="text/css">
+.pagination{display:inline-block;padding-left:0;margin:20px 0;border-radius:4px}.pagination>li{display:inline}.pagination>li>a,.pagination>li>span{position:relative;float:left;padding:6px 12px;margin-left:-1px;line-height:1.42857143;color:#337ab7;text-decoration:none;background-color:#fff;border:1px solid #ddd}.pagination>li:first-child>a,.pagination>li:first-child>span{margin-left:0;border-top-left-radius:4px;border-bottom-left-radius:4px}.pagination>li:last-child>a,.pagination>li:last-child>span{border-top-right-radius:4px;border-bottom-right-radius:4px}.pagination>li>a:focus,.pagination>li>a:hover,.pagination>li>span:focus,.pagination>li>span:hover{color:#23527c;background-color:#eee;border-color:#ddd}.pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover,.pagination>.active>span,.pagination>.active>span:focus,.pagination>.active>span:hover{z-index:2;color:#fff;cursor:default;background-color:#337ab7;border-color:#337ab7}.pagination>.disabled>a,.pagination>.disabled>a:focus,.pagination>.disabled>a:hover,.pagination>.disabled>span,.pagination>.disabled>span:focus,.pagination>.disabled>span:hover{color:#777;cursor:not-allowed;background-color:#fff;border-color:#ddd}.pagination-lg>li>a,.pagination-lg>li>span{padding:10px 16px;font-size:18px}.pagination-lg>li:first-child>a,.pagination-lg>li:first-child>span{border-top-left-radius:6px;border-bottom-left-radius:6px}.pagination-lg>li:last-child>a,.pagination-lg>li:last-child>span{border-top-right-radius:6px;border-bottom-right-radius:6px}.pagination-sm>li>a,.pagination-sm>li>span{padding:5px 10px;font-size:12px}.pagination-sm>li:first-child>a,.pagination-sm>li:first-child>span{border-top-left-radius:3px;border-bottom-left-radius:3px}.pagination-sm>li:last-child>a,.pagination-sm>li:last-child>span{border-top-right-radius:3px;border-bottom-right-radius:3px}.pager{padding-left:0;margin:20px 0;text-align:center;list-style:none}.pager li{display:inline}.pager li>a,.pager li>span{display:inline-block;padding:5px 14px;background-color:#fff;border:1px solid #ddd;border-radius:15px}.pager li>a:focus,.pager li>a:hover{text-decoration:none;background-color:#eee}.pager .next>a,.pager .next>span{float:right}.pager .previous>a,.pager .previous>span{float:left}.pager .disabled>a,.pager .disabled>a:focus,.pager .disabled>a:hover,.pager .disabled>span{color:#777;cursor:not-allowed;background-color:#fff}
+</style></head>
+
+<body>
+<div class="main">
+	<div class="leftside">
+		<div class="logo"><a href="http://www.ffwap.com/index.php?r=siteMaster/site/index#"><img src="./网站主_files/logo.jpg"></a></div>
+		<div class="sidenav">
+		<div class="hover" style="top: 345px;"></div>
+			<ul>
+				<li class=""><a href="http://www.ffwap.com/index.php?r=siteMaster/index/index"><img src="./网站主_files/home.png"></a></li>
+				<li class=""><a href="http://www.ffwap.com/index.php?r=siteMaster/site/index"><img src="./网站主_files/website.png"></a></li>
+				<li class=""><a href="http://www.ffwap.com/index.php?r=siteMaster/adv/index"><img src="./网站主_files/ad.png"></a></li>
+				<li class=""><a href="http://www.ffwap.com/index.php?r=siteMaster/data/index"><img src="./网站主_files/finance.png"></a></li>
+				<li class=""><a href="http://www.ffwap.com/index.php?r=siteMaster/paylog/index"><img src="./网站主_files/payment.png"></a></li>
+				<!-- <li><a href="/index.php?r=siteMaster/site/index"><img src="./sitemaster/img/domain.png" /></a></li> -->
+				<li class="on"><a href="http://www.ffwap.com/index.php?r=siteMaster/notice/index"><img src="./网站主_files/notice.png"></a></li>
+				<li><a href="http://www.ffwap.com/index.php?r=siteMaster/userinfo/index"><img src="./网站主_files/personal.png"></a></li>
+				<li><a href="http://www.ffwap.com/index.php?r=siteMaster/idcard/index"><img src="./网站主_files/sfzsc.png"></a></li>
+				<li><a href="http://www.ffwap.com/index.php?r=siteMaster/pwd/index"><img src="./网站主_files/password.png"></a></li>
+				<li><a href="tencent://message/?uin=712099849&amp;Site=www.ete.cn&amp;Menu=yes"><img src="./网站主_files/customer.png"></a></li>
+				<li><a href="http://www.ffwap.com/index.php?r=siteMaster/index/logout"><img src="./网站主_files/exit.png"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="rightside">
+		<div class="rightmain">
+			<div class="righttop">
+				<div class="bulletin">
+					<div class="bulletinpic"><a href="http://www.ffwap.com/index.php?r=siteMaster/site/index#"><img src="./网站主_files/bell.gif"></a></div>
+					<div class="bulletintxt"><marquee behavior="scroll" direction="left" align="right" width="300" style="width: 300px;"><a href="http://www.ffwap.com/index.php?r=siteMaster/notice/content&amp;id=86">分发移动广告联盟11.14至11.20日周结已支付	</a></marquee></div>
+				</div>
+				<div class="personal">
+					<div class="personalpic"><a href="http://www.ffwap.com/index.php?r=siteMaster/site/index#"><img src="./网站主_files/rent.png"></a></div>
+					<div class="personalname"><a href="http://www.ffwap.com/index.php?r=siteMaster/site/index#">yesemeinv</a></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="content">
+<div class="exhibition">
+
+				</div>
+<script type="text/javascript">
+	$('.tjan').click(function(){
+		var manage_name = $.trim($("[name=manage_name]").val());
+		var icp = $.trim($("[name=icp]").val());
+		var site_name = $.trim($("[name=site_name]").val());
+		if(!site_name){
+			alert('网站名称不能为空！');
+			return false;
+		}
+		var site_url = $.trim($("[name=site_url]").val());
+		if(!site_url){
+			alert('网站地址不能为空！');
+			return false;
+		}
+		var manage_tel = $.trim($("[name=manage_tel]").val());
+		if(!manage_tel){
+			alert('QQ不能为空！');
+			return false;
+		}
+		$.post("/index.php?r=siteMaster/site/create",{manage_name:manage_name,icp:icp,site_name:site_name,site_url:site_url,manage_tel:manage_tel},function(data,status){
+			if (data=='no') {
+				alert('域名已存在');
+			}else if(data=='failed'){
+				alert('添加失败');
+			}else{
+				alert('添加成功');
+			}
+		});
+	});
+</script>			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(function(){
+	var Height = 69; //li的高度
+	var pTop = 0; // .lanrenzhijia 的paddding-top的值
+	$('.sidenav li').mouseover(function(){
+		$(this).addClass('on').siblings().removeClass('on');
+		var index = $(this).index();
+		var distance = index*(Height+0)+pTop+'px'; //如果你的li有个border-bottom为1px高度的话，这里需要加1
+		$('.sidenav .hover' ).stop().animate({top:distance},150); //默认动画时间为150毫秒，懒人们可根据需要修改
+	});
+});
+</script>
+
+
+
+</body></html>
