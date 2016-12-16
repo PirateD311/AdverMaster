@@ -1,0 +1,54 @@
+<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+        <ul class="am-list admin-sidebar-list">
+            <li><a href="/admin/index"><span class="am-icon-home"></span>首页</a></li>
+            <li><a href="/admin/user"><span class="am-icon-table"></span> 会员管理</a></li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 广告管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                    <li><a href="/admin/advert" class="am-cf"><span class="am-icon-table"></span>广告列表<span class="am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                    <li><a href="/admin/advert/create"><span class="am-icon-pencil-square-o"></span> 创建广告</a></li>
+                </ul>
+            </li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}"><span class="am-icon-file"></span> 站点管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
+                    <li><a href="/admin/site" class="am-cf"><span class="am-icon-table"></span>站点列表<span class="am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                    <!--<li><a href="/admin/site/create"><span class="am-icon-pencil-square-o"></span> 创建站点</a></li>-->
+                </ul>
+            </li>
+
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav3'}"><span class="am-icon-file"></span> 每日报表 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav3">
+                    <li><a href="/admin/report/site" class="am-cf"><span class="am-icon-table"></span>站点报表<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                    <li><a href="/admin/report/advert"><span class="am-icon-table"></span>广告报表</a></li>
+                </ul>
+            </li>
+
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav4'}"><span class="am-icon-file"></span> 账单管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav4">
+                    <li><a href="/admin/bill" class="am-cf"><span class="am-icon-table"></span>账单列表<span class="am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                    <li><a href="/admin/bill/create"><span class="am-icon-pencil-square-o"></span> 新建账单 </a></li>
+                </ul>
+            </li>
+
+            <li><a href="/logout"><span class="am-icon-sign-out"></span> 注销</a></li>
+        </ul>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-bookmark"></span> 公告</p>
+                <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+            </div>
+        </div>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-tag"></span> wiki</p>
+                <p>Welcome to the Amaze UI wiki!</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Amaze UI Admin form Examples</title>
+  <meta name="description" content="这是一个form页面">
+  <meta name="keywords" content="form">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="/lib/amazeUI_admin/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="/lib/amazeUI_admin/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="/lib/amazeUI_admin/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/lib/amazeUI_admin/css/admin.css">
+</head>
+<body>
+
+<!--header start-->
+<% include admin-header.ejs %>
+<!--header end-->
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <% include admin-sidebar.ejs %>
+  <!-- sidebar end -->
+
+<!-- content start -->
+<div class="admin-content">
+  <div class="admin-content-body">
+    <div class="am-cf am-padding am-padding-bottom-0">
+      <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">站点管理</strong> /
+        <small>创建站点</small>
+      </div>
+    </div>
+
+    <hr>
+    <form action="#" method="post">
+    <div class="am-tabs am-margin" data-am-tabs>
+      <ul class="am-tabs-nav am-nav am-nav-tabs">
+        <li class="am-active"><a href="#tab1">站点信息</a></li>
+        <li><a href="#tab2">广告栏位</a></li>
+      </ul>
+
+      <div class="am-tabs-bd">
+        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+
+          <!-- 项目名称-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">
+              网站名
+            </div>
+            <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+              <input required="required" name="sName" type="text" class="am-input-sm">
+            </div>
+          </div>
+          <!-- 项目描述-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">
+              域名
+            </div>
+            <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+              <input name="sWebDomain" type="text" class="am-input-sm">
+            </div>
+          </div>
+
+          <!-- 链接-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">
+              备案号
+            </div>
+            <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+              <input required="required" name="sHref" type="text" class="am-input-sm">
+            </div>
+          </div>
+
+          <!-- 网站类型-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">展示类型</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <div class="am-btn-group" data-am-button>
+                <select required="required" name="sWebCategory" data-am-selected="{btnSize: 'sm'}">
+                  <option value="新闻" >新闻</option>
+                  <option value="小说" >小说</option>
+                  <option value="诱惑" >诱惑</option>
+                  <option value="游戏" >游戏</option>
+                  <option value="图片" >图片</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+<!--费用与展示策略-->
+        <!--<div class="am-tab-panel am-fade" id="tab2">-->
+            <!--<div class="am-g am-margin-top">-->
+              <!--<div class="am-u-sm-4 am-u-md-2 am-text-right">-->
+                <!--广告单价-->
+              <!--</div>-->
+              <!--<div class="am-u-sm-8 am-u-md-4">-->
+                <!--<input required="required" min="0" name="nAdvertPrice" type="number" class="am-input-sm">-->
+              <!--</div>-->
+              <!--<div class="am-hide-sm-only am-u-md-6">*必填</div>-->
+            <!--</div>-->
+
+            <!--<div class="am-g am-margin-top">-->
+              <!--<div  class="am-u-sm-4 am-u-md-2 am-text-right">-->
+                <!--站点单价-->
+              <!--</div>-->
+              <!--<div class="am-u-sm-8 am-u-md-4">-->
+                <!--<input required="required" min="0" name="nSitePrice" type="number" class="am-input-sm">-->
+              <!--</div>-->
+              <!--<div class="am-hide-sm-only am-u-md-6">*必填</div>-->
+            <!--</div>-->
+
+            <!--<div class="am-g am-margin-top">-->
+              <!--<div class="am-u-sm-4 am-u-md-2 am-text-right">-->
+                <!--投放量-->
+              <!--</div>-->
+              <!--<div class="am-u-sm-8 am-u-md-4">-->
+                <!--<input required="required" min="0" name="nMaxCount" type="number" class="am-input-sm">-->
+              <!--</div>-->
+              <!--<div class="am-hide-sm-only am-u-md-6">*必填</div>-->
+            <!--</div>-->
+
+            <!--<div class="am-g am-margin-top">-->
+              <!--<div class="am-u-sm-4 am-u-md-2 am-text-right">-->
+                <!--每日投放量-->
+              <!--</div>-->
+              <!--<div class="am-u-sm-8 am-u-md-4">-->
+                <!--<input required="required" min="0" name="nMaxDayCount" type="number" class="am-input-sm">-->
+              <!--</div>-->
+              <!--<div class="am-hide-sm-only am-u-md-6">*必填</div>-->
+            <!--</div>-->
+
+
+        <!--</div>-->
+
+
+
+      </div>
+    </div>
+
+    <div class="am-margin">
+      <button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+      <!--<button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>-->
+    </div>
+    </form>
+  </div>
+
+  <footer class="admin-content-footer">
+    <hr>
+    <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+  </footer>
+</div>
+<!-- content end -->
+
+</div>
+
+
+<!--footer and base js begin-->
+<% include admin-footer.ejs %>
+<!--footer and base js end-->
+</body>
+</html>
