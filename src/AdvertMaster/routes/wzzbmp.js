@@ -3,7 +3,7 @@
  */
 const router = require("express").Router();
 //const logger = require("")
-router.get('/:type?',function(req,res,next){
+router.get('/',function(req,res,next){
     //鉴权begin
     if(!req.session.logged_in){
         //res.render("Advert_BMP_index",{logged_in:true,logged_username:"测试"});
@@ -11,15 +11,18 @@ router.get('/:type?',function(req,res,next){
     }else{
         res.render("Advert_BMP_index",{logged_in:true,logged_username:req.session.logged_username});
     }
-    //鉴权end
-
-    //检查路由
-
-    //检查路由
-
 
 });
+router.post('/',function(req,res,next){
+    //鉴权begin
+    if(!req.session.logged_in){
+        //res.render("Advert_BMP_index",{logged_in:true,logged_username:"测试"});
+        res.send("用户未登录，请登陆后访问"+'<a href="/">登录</a>');
+    }else{
+        res.render("Advert_BMP_index",{logged_in:true,logged_username:req.session.logged_username});
+    }
 
+});
 /*
 * 1.查询所有网站统计信息:all
 * 2.网站主审核：

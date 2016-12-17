@@ -9,26 +9,24 @@ const router = express.Router();
 const DBManager = require('../lib/database/MongoDBManager.js').DBManager;
 
 router.post('/',function(req,res,next){
-    DBManager.getUserModel().findOne({_id:req.session.logged_userid},function(err,doc){
+    console.log(req.session.logged_username);
+    DBManager.getUserModel().findOne({sUserName:req.session.logged_username,$or:[{sUserType:USERTYPE_NORMAL},{sUserType:USERTYPE_SITE_MASTER}]},function(err,doc){
         if(err||!doc){
-            return res.send("用户未登录或无签约权限。id:%s",req.session.logged_userid);
+            return res.render('redirect',{info:"用户未登录或无签约权限，请阅读签约指南",href:"/"});
         }
         var RegisterInfo = {
             sOwnerUserName:doc.sUserName,
             sWebIp:req.body.ip,
             sWebDomain:req.body.domain,
-            sWebRegisterDate:new Date().toLocaleDateString(),
-            sWebState:CONST.SITE_STATE_UNACTIVE,
-            nCPA:0,
-            nCPC:0,
-            nCPM:0
+            sWebCategory:req.body.category
         };
         console.log(RegisterInfo);
-        DBManager.addWebFlowStat(RegisterInfo,function(err,doc){
+        DBManager.addWebSite(RegisterInfo,function(err,doc){
             if(err){
-                return res.send("签约失败");
+                //return res.send("签约失败");
+                return res.render('redirect',{info:"签约失败，请阅读签约指南",href:"/register"});
             }
-            return res.send("签约成功");
+            return res.render('redirect',{info:"签约成功",href:"/wzzbmp"});
         });
     });
 });
@@ -38,7 +36,7 @@ router.get('/',function(req,res,next){
         //return res.send("用户未登录！无法操作广告登记")
         return res.render("register");
     }else{
-        return res.send("用户未登录！无法操作广告登记")
+        return res.render('redirect',{info:"用户未登录！无法操作广告登记",href:"/"});
     }
 });
 

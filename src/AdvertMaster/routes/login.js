@@ -3,29 +3,36 @@
  */
 var express = require('express');
 var router = express.Router();
-var logger = require("../lib/myutil.js").log4js.getLogger();
+var Util = require('../lib/myutil');
 var DBManager = require("../lib/database/MongoDBManager.js").DBManager;
 
 router.post('/',function(req,res,next){
     console.log("username:%s,password:%s",req.body.username,req.body.password);
-    if(req.session.logged_in){
-        return res.send("已登录");
+    if(Util.isLogin(req)){
+        req.session = null;
     }
-    DBManager.getUserModel().findOne({sUserName:req.body.username,sPassword:req.body.password},function(err,doc){
-        if(err){
-            return next(err);
-        }
-        if(!doc){
-            return res.send("用户未找到或密码错误");
-        }else{
+    DBManager.getUserModel()
+    .findOne({sUserName:req.body.username,sPassword:req.body.password})
+    .then(user=>{
+        if(user)
+        {
+            if(user.sUserState != USERSTATE_NORMAL)
+                return res.send('用户未激活或被锁定，请联系业务员处理.');
             req.session.logged_in = true;
-            req.session.logged_userid = doc._id.toString();
-            req.session.logged_username = doc.sUserName;
-            console.log("logged_username:"+doc.sUserName);
-            return res.render("index",{logged_in:true,logged_username:doc.sUserName});
-        }
+            req.session.logged_uid = user.nId;
+            req.session.logged_username = user.sUserName;
+            req.session.logged_rpg = user.sUserType;
 
-    });
+            if(user.sUserType == USERTYPE_BUSINESS_MASTER)
+                return res.redirect('/admin/index');
+            else if(user.sUserType == USERTYPE_ADVERTISER)
+                return res.redirect('/advertiser/index');
+            else if(user.sUserType == USERTYPE_SITE_MASTER)
+                return res.redirect('/siteManager/index');
+        }
+    })
+    .catch(err=>res.send(err));
+
 
 });
 
