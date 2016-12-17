@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+
 var Util = require('./lib/myutil.js');
 var log4js = Util.log4js;
 var log = log4js.getLogger('normal');
@@ -25,6 +26,8 @@ app.set('view engine', 'ejs');
 app.use(logger(':method /:status :response-time :remote-addr '));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
 app.use(cookieParser());
 app.use(session({secret:"12liu555"}));
 app.use(express.static(path.join(__dirname, '/public')));
@@ -37,11 +40,24 @@ app.use('/login',login);
 app.use('/wzzbmp',require("./routes/wzzbmp"));
 app.use('/signup',require("./routes/signup"));
 app.use('/register',require("./routes/register"));
+app.use('/logout',require("./routes/logout"));
+app.use('/siteManager',require('./routes/SiteManager'));
+app.use('/advertiser',require('./routes/AdvertiserController'));
+app.use('/admin',require('./routes/AdminController'));
+app.use('/hrefPackeg',require('./routes/hrefPackeg'));
 /*Post Interface
 * */
 app.use('/getWebSiteInfo',require("./routes/interface/getWebSiteInfo"));
 app.use('/wzzbmp/getWebSiteInfo',require("./routes/interface/getWebSiteInfo"));
 app.use('/statFlow',require("./routes/interface/statFlow"));
+app.use('/userManager',require("./routes/interface/UserManager"));
+app.use('/createAdvert',require("./routes/interface/createAdvert"));
+app.use('/qryAdvertInfo',require("./routes/interface/qryAdvert"));
+app.use('/modifyAdvert',require("./routes/interface/modifyAdvert"));
+app.use('/upload',require("./routes/interface/upload"));
+app.use('/material',require('./routes/interface/material'));
+app.use('/report',require('./routes/interface/report'));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -74,5 +90,5 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
+require('./lib/model/genAdvertStatReport');
 module.exports = app;
