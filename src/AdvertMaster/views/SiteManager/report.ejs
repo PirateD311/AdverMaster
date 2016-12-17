@@ -1,0 +1,17 @@
+<div>
+    <h1> 财务报表 </h1>
+    <form action="/siteManager/report">
+        开始日期:<input type="date" name="gt_date" />结束日期:<input type="date" name="lt_date" />
+        <button type="submit">查询</button>
+    </form>
+    <table class="table table-striped">
+        <tr><td>日期</td><td>数量</td><td>总收入</td></tr>
+        <% for(var i =0 ;i<siteInfos.length;i++){ %>
+        <tr>
+            <td><%= siteInfos[i]["sDate"] %></td>
+            <td><%= siteInfos[i]["nCount"] %></td>
+            <td><%= siteInfos[i]["nMoney"] %></td>
+        </tr>
+        <% } %>
+    </table>
+</div>

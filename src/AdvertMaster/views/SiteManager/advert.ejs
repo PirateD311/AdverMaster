@@ -1,0 +1,26 @@
+<div>
+    <h1>广告管理</h1>
+    <table class="table table-striped">
+        <tr><td>广告项目</td><td>广告类型</td><td>投放数</td><td>申请的时间</td><td>获取代码</td></tr>
+        <% for(var i =0 ;i < adverts.length;i++){ %>
+        <tr>
+            <td><%= adverts[i]["sName"] %></td>
+            <td><%= adverts[i]["sDisplayType"] %></td>
+            <td><%= adverts[i]["nStock"] %></td>
+            <td><%= adverts[i]["sCreateTime"] %></td>
+            <td>
+                <button onclick="getAdvertCode(<%= adverts[i]['nAdvertId'] %>)">获取代码</button>
+            </td>
+        </tr>
+        <% }%>
+    </table>
+</div>
+
+<script type="text/javascript">
+    function getAdvertCode(advertid){
+        var script = '<script type="text/javascript" scr="http://123.206.227.204/javascripts/AdvertManager.js" data='
+        script += advertid;
+        script += '><\/script>'
+        alert(script);
+    }
+</script>

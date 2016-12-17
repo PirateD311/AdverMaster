@@ -41,39 +41,29 @@
     <div class="col-md-2">
         <div style="overflow: hidden;background-color: #d6e9c6;padding: 5px;min-height: 400px;">
            <div class="left-nav">
-                <h5>系统管理</h5>
-                <ul class="MM list-group">
-                </ul>
-                <h5>网站管理</h5>
-                <ul class="MM list-group nav-hide">
-                    <li posturl="/wzzbmp/queryWzz" postdata="{'web_register_state':1}" posttable="wzz" class="list-group-item wzgl"><a  target="main">网站主审核</a></li>
-                    <li posturl="/wzz/queryWzz" postdata="" posttable="wzz" class="list-group-item wzgl" ><a  target="main">所有网站</a></li>
-                    <li posturl="/wzz/queryWzz" postdata="{'web_register_state':0}" posttable="wzz" TableCol="",TableItemName="",TableTitle="" class="list-group-item wzgl"><a  target="main">待审核网站</a></li>
-                    <li posturl="/wzz/queryWzz" postdata="{'web_state':1}" posttable="wzz" class="list-group-item "><a  target="main">正常会员</a></li>
-                    <li posturl="/wzz/queryWzz" postdata="{'web_register_state':3}" posttable="wzz" class="list-group-item " class="list-group-item wzgl"><a  target="_blank">锁定网站</a></li>
-                    <li class="list-group-item"><a  target="_blank">所有会员</a></li>
-                </ul>
-                <h5>广告管理</h5>
-                <ul class="MM list-group nav-hide">
-                    <li class="list-group-item"><a  target="main">广告供求管理</a></li>
-                    <li class="list-group-item"><a  target="main">站长广告申请</a></li>
-                    <li class="list-group-item"><a  target="main">广告位申请</a></li>
-                    <li class="list-group-item"><a  target="main">效果管理</a></li>
-                </ul>
-                <h5>CRM管理</h5>
-                <ul class="MM list-group nav-hide" >系统管理
-                    <li class="list-group-item"><a  target="main">系统首页</a></li>
-                    <li class="list-group-item"><a  target="main">新站投放</a></li>
-                    <li class="list-group-item"><a  target="main">恢复投放</a></li>
-                    <li class="list-group-item"><a  target="main">佣金查询</a></li>
-                    <li class="list-group-item"><a  target="_blank">KPI登录</a></li>
-                    <li class="list-group-item"><a  target="_blank">技术支持</a></li>
-                </ul>
+                <h5><a href="/SiteManager/index">站长首页</a></h5>
+
+                <h5><a href="/SiteManager/site">站点管理</a></h5>
+
+                <h5><a href="/SiteManager/advert">广告管理</a></h5>
+
+                <h5><a href="/SiteManager/report">财务报表</a></h5>
+
+                <h5><a href="/SiteManager/paybill">支付记录</a></h5>
+
             </div>
         </div>
     </div>
     <div class="col-md-10 right-warp" style="height: 1600px">
-
+        <% if(rightViewName =='site'){ %>
+            <% include site %>
+        <%}else if(rightViewName =='advert') {%>
+            <% include advert %>
+        <% }else if (rightViewName =='report'){ %>
+            <% include report %>
+        <% }else if(rightViewName == 'paybill'){ %>
+            <% include paybill %>
+        <% }%>
         <hr>
     </div>
 </div>

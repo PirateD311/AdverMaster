@@ -26,8 +26,6 @@
 
             <div class="navbar-right navbar-brand">已登录</div>
 
-
-
     </div><!--/.navbar-collapse -->
     </div>
 </nav>
@@ -36,8 +34,12 @@
 <div class="jumbotron">
     <div class="container">
         <h1>签约条款</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <p>
+            <li>此功能只限普通注册用户、站长使用。业务员无法提交签约申请</li>
+            <li>签约时请填写真实信息</li>
+            <li>签约信息经业务员审核通过后用户自动升级为站长</li>
+            <li>...</li>
+        </p>
     </div>
 </div>
 
@@ -53,7 +55,15 @@
                     <h4>广告服务签约</h4>
                     <input class="form-control" name="ip" type="text" placeholder="网站ip" required="required" /><br>
                     <input class="form-control" name="domain" type="text" placeholder="网站域名" required="required" /><br>
-                    <input class="form-control" name="category" type="text" placeholder="网站类型" required="required" /><br>
+
+                      <select name="category"  class="form-control">
+                          <option selected="selected" value="">网站类型</option>
+                          <option value="娱乐">娱乐</option>
+                          <option value="游戏">游戏</option>
+                          <option value="新闻">新闻</option>
+                      </select>
+
+                    <br>
                     <input class="form-control" name="idcard" type="text" placeholder="身份证号" required="required" /><br>
                     <input class="form-control" name="" type="text" placeholder="许可证号" required="required" /><br>
                     <input class="btn btn-success" type="submit" value="登记"  />
@@ -97,7 +107,6 @@ function showAdvert(){
         });
     }
 }
-
 
 </script>
 </body>
