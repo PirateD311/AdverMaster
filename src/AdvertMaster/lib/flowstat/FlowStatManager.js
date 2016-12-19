@@ -49,27 +49,26 @@ function processFlowDetail(data)
     })
     .then(record=>{
         logger.info("统计完成");
-        //技术当天广告是否达到今日上限
-        var query = {
-            nAdvertId:data.advert.nId,
-            sStatType:data.sStatType,
-            sDate:{
-                $gt:today+" 00:00:00",
-                $lt:today+" 23:59:59",
-            }
-        };
-        return DBManager.getFlowDetailRecord().find(query);
-    })
-    .then(records=>{
-        logger.debug("records length:%d",records.length);
-        logger.debug("nMaxDayCount :%d",data.advert.nMaxDayCount * CONFIG.ADVERT_COUNT_DISCOUNT);
-        if(records.length >= data.advert.nMaxDayCount * CONFIG.ADVERT_COUNT_DISCOUNT
-            || records.length >= data.advert.nStock)
+        //满足广告计费条件时计费并扣量
+        if((data.advert.sChargeType == ADVERTCHARGETYPE_VIEW && data.sStatType == 'cpv')
+            ||(data.advert.sChargeType == ADVERTCHARGETYPE_CLICK && data.sStatType == 'cpc'))
         {
-            logger.debug("update...stock to 0");
-            DBManager.getAdvertInfoModel().findOneAndUpdate({nId:data.advert.nId},{nDayStock:0}).catch(err=>logger.error(err))
+            DBManager.getAdvertInfoModel()
+            .findOneAndUpdate({nId:data.advert.nId},{$inc:{nDayStock:-1,nStock:-1}})
         }
+
+        //return DBManager.getFlowDetailRecord().find(query);
     })
+    //.then(records=>{
+    //    logger.debug("records length:%d",records.length);
+    //    logger.debug("nMaxDayCount :%d",data.advert.nMaxDayCount * CONFIG.ADVERT_COUNT_DISCOUNT);
+    //    if(records.length >= data.advert.nMaxDayCount * CONFIG.ADVERT_COUNT_DISCOUNT
+    //        || records.length >= data.advert.nStock)
+    //    {
+    //        logger.debug("update...stock to 0");
+    //        DBManager.getAdvertInfoModel().findOneAndUpdate({nId:data.advert.nId},{nDayStock:0}).catch(err=>logger.error(err))
+    //    }
+    //})
     .catch(err=>console.log(err));
 }
 module.exports.processFlowDetail = processFlowDetail;

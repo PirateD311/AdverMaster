@@ -94,7 +94,9 @@ function countAdvertReportByQuery(data,query)
             else
                 update.nStock = data.nStock-report.nDayCost;
 
+
             update.nDayStock = data.nMaxDayCount - report.nDayCost;
+            logger.debug("实时计费库存为：%d  ,报表计算库存为:%d",data.nDayStock,update.nDayStock);
             return DBManager.getAdvertInfoModel().findOneAndUpdate({nId:data.nId},update);
         })
         .then((advert)=>
@@ -307,7 +309,7 @@ module.exports.getSiteReport = getSiteReport;
 
 function getAdvertReport(data)
 {
-    var screen = ['nId','sDate','sCategory','sOwnerName','sAdvertName'];
+    var screen = ['nId','sDate','sCategory','sOwnerName','sAdvertName','nOwnerUid','nAdvertId'];
     var query = Util.filter(screen,data)||null;
     return DBManager.getAdvertDailyStatReport().find(query);
 }

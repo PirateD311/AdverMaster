@@ -98,3 +98,36 @@ function isLogin(req){
     }
 }
 module.exports.isLogin = isLogin;
+
+
+//设置允许跨域访问
+function openCrossDomain(res,HostList)
+{
+    HostList = HostList || '*';
+    res.header("Access-Control-Allow-Origin", HostList);
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","POST,GET,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1');
+    res.header("Content-Type", "application/json;charset=utf-8");
+}
+module.exports.openCrossDomain = openCrossDomain;
+
+//获取remote ip
+function getRemoteIp(req)
+{
+    return req.headers['x-real-ip']
+        ||req.headers['x-forwarded-for']
+        ||req.connection.remoteAddress
+        ||req.socket.remoteAddress
+        ||req.connection.socket.remoteAddress;
+}
+module.exports.getRemoteIp = getRemoteIp;
+
+function get$ofTimeInToday()
+{
+    return {
+        $gt: new Date().toLocaleDateString()+" 00:00:00",
+        $lt: new Date().toLocaleDateString()+" 23:59:59"
+    }
+}
+module.exports.get$ofTimeInToday = get$ofTimeInToday;
