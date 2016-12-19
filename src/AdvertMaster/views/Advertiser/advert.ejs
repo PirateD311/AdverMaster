@@ -1,0 +1,19 @@
+<div>
+    <h1>广告管理</h1>
+    <table class="table table-striped">
+        <tr><td>广告项目</td><td>广告类型</td><td>投放数</td><td>申请的时间</td><td>计费方式</td><td>价格</td><td>链接</td><td>状态</td></tr>
+        <% for(var i =0 ;i < adverts.length;i++){ %>
+        <tr>
+            <td><%= adverts[i]["sName"] %></td>
+            <td><%= adverts[i]["sDisplayType"] %></td>
+            <td><%= adverts[i]["nStock"] %></td>
+            <td><%= adverts[i]["sCreateTime"] %></td>
+            <td><%= adverts[i]["sChargeType"] %></td>
+            <td><%= adverts[i]["nAdvertPrice"] %></td>
+            <td><%= adverts[i]["sHref"] %></td>
+            <td><%= adverts[i]["sAdvertState"] %></td>
+        </tr>
+        <% }%>
+    </table>
+
+</div>

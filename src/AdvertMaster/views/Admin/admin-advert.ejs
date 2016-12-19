@@ -1,0 +1,141 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Amaze UI Admin table Examples</title>
+  <meta name="description" content="这是一个 table 页面">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="/lib/amazeUI_admin/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="/lib/amazeUI_admin/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="/lib/amazeUI_admin/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/lib/amazeUI_admin/css/admin.css">
+</head>
+<body>
+<!--header start-->
+<% include admin-header.ejs %>
+<!--header end-->
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <% include admin-sidebar.ejs %>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">广告管理</strong> / <small>全部广告</small></div>
+      </div>
+
+      <hr>
+
+      <div class="am-g">
+      <% include admin-search.ejs %>
+      </div>
+
+      <div class="am-g">
+        <div class="am-u-sm-12">
+          <form class="am-form">
+            <table class="am-table am-table-striped am-table-hover table-main">
+              <thead>
+              <tr>
+                <!--<th class="table-check"><input type="checkbox" /></th>-->
+                <th class="table-id">ID</th><th class="table-title">广告名</th>
+                <th class="table-type">广告主</th><th class="table-author am-hide-sm-only">展示类型</th>
+                <th class="table-type">计费方式</th><th class="table-author am-hide-sm-only">广告单价</th>
+                <th class="table-type">站点单价</th><th class="table-author am-hide-sm-only">最大投量</th>
+                <th class="table-type">最大日投</th><th class="table-author am-hide-sm-only">余量</th>
+                <th class="table-type">今日余量</th>
+                <th class="table-date am-hide-sm-only">创建日期</th><th class="table-author am-hide-sm-only">状态</th>
+                <th class="table-set">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% for(var advert of data.adverts) {%>
+              <tr>
+                <!--<td><input type="checkbox" /></td>-->
+                <td><%= advert.nId %></td>
+                <td><a href="#"><%= advert.sName %></a></td>
+                <td><%= advert.sOwnerName %></td>
+                <td class="am-hide-sm-only"><%= advert.sDisplayType %></td>
+                <td class="am-hide-sm-only"><%= advert.sChargeType %></td>
+                <td class="am-hide-sm-only"><%= advert.nAdvertPrice %></td>
+                <td class="am-hide-sm-only"><%= advert.nSitePrice %></td>
+                <td class="am-hide-sm-only"><%= advert.nMaxCount %></td>
+                <td class="am-hide-sm-only"><%= advert.nMaxDayCount %></td>
+                <td class="am-hide-sm-only"><%= advert.nStock %></td>
+                <td class="am-hide-sm-only"><%= advert.nDayStock %></td>
+                <td class="am-hide-sm-only"><%= advert.sCreateTime %></td>
+                <td class="am-hide-sm-only">
+                  <%= advert.sAdvertState %>
+                </td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <form style="display: none">
+                        <button class="am-btn am-btn-default am-btn-xs am-text-danger"><span class="am-icon-pencil-square-o"></span>删除</button>
+                      </form>
+                      <form method="post" action="/admin/advert/active" style="display: inline-block">
+                        <input style="display:none" name="nId" value=<%= advert.nId %> />
+                        <button type="submit" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span>启用</button>
+                      </form>
+                      <form method="post" action="/admin/advert/lock" style="display: inline-block">
+                        <input style="display:none" name="nId" value=<%= advert.nId %> />
+                        <button type="submit" class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-pencil-square-o"></span>锁定</button>
+                      </form>
+                      <form method="post" action="/admin/advert/edit" style="display: inline-block">
+                        <input style="display:none" name="nId" value=<%= advert.nId %> />
+                        <button type="submit" class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-pencil-square-o"></span>修改</button>
+                      </form>
+                      <button type="button" onclick="processImgView('<%= advert.sMaterialSrc %>')"  class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-pencil-square-o"></span>预览</button>
+
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% }%>
+              </tbody>
+            </table>
+            <div class="am-cf">
+              共 <%= data.adverts.length %> 条记录
+
+            </div>
+            <hr />
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <footer class="admin-content-footer">
+      <hr>
+      <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+
+  </div>
+
+  <!-- content end -->
+</div>
+
+<!--footer and base js begin-->
+<% include admin-footer.ejs %>
+<!--footer and base js end-->
+<div id="AdvertImgView" style="position:fixed;z-index: auto;right:0;bottom:0;display: none">
+  <div style="float: left;cursor: pointer" onclick="$('#AdvertImgView').hide()">❌</div>
+  <img height="200px" width="300px" src="">
+</div>
+<script>
+  function processImgView(src)
+  {
+    $('#AdvertImgView img').attr('src',src);
+    $('#AdvertImgView').show();
+  }
+</script>
+</body>
+</html>

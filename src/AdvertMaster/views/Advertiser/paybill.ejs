@@ -1,0 +1,19 @@
+<div>
+    <h1> 支付记录 </h1>
+    <form>
+        开始日期:<input type="date" />结束日期:<input type="date" />
+        <button>查询</button><br></br>
+    </form>
+    <table class="table table-striped">
+        <tr><td>周期</td><td>税前佣金</td><td>税后佣金</td><td>状态</td><td>打款日期</td></tr>
+        <% for(var i =0 ;i<payBills.length;i++){ %>
+        <tr>
+            <td><%= payBills[i]["sBeginDate"] %>至<%= payBills[i]["sEndDate"] %></td>
+            <td><%= payBills[i]["nPreTaxPay"] %></td>
+            <td><%= payBills[i]["nAftTaxPay"] %></td>
+            <td><%= payBills[i]["sBillState"] %></td>
+            <td><%= payBills[i]["sPayDate"] %></td>
+        </tr>
+        <% } %>
+    </table>
+</div>

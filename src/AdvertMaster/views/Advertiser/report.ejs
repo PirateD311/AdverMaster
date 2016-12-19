@@ -1,0 +1,20 @@
+<div>
+    <h1> 财务报表 </h1>
+    <form method="post" action="/advertor/report">
+        开始日期:<input name="sBeginDate" type="date"  />结束日期:<input name="sEndDate" type="date" />
+        <button>查询</button>
+    </form>
+    <table class="table table-striped">
+        <tr><td>日期</td><td>数量</td><td>总收入</td></tr>
+        <% for(var i =0 ;i<reports.length;i++){ %>
+        <tr>
+            <td><%= reports[i]["sDate"] %></td>
+            <td><%= reports[i]["nQuantity"] %></td>
+            <td><%= reports[i]["nCost"] %></td>
+        </tr>
+        <% } %>
+    </table>
+    <script>
+
+    </script>
+</div>

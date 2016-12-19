@@ -1,0 +1,14 @@
+<div>
+    <h1> 我的站点 </h1>
+    <table class="table table-striped">
+       <tr><td>站点名</td><td>地址</td><td>备案号</td><td>状态</td></tr>
+        <% for(var i =0 ;i<siteInfos.length;i++){ %>
+        <tr>
+            <td><%= siteInfos[i]["sOwnerUserName"] %></td>
+            <td><%= siteInfos[i]["sWebDomain"] %></td>
+            <td><%= siteInfos[i]["sWebDomain"] %></td>
+            <td><%= siteInfos[i]["sWebState"] %></td>
+        </tr>
+        <% } %>
+    </table>
+</div>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Amaze UI Admin table Examples</title>
+  <meta name="description" content="这是一个 table 页面">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="/lib/amazeUI_admin/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="/lib/amazeUI_admin/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="/lib/amazeUI_admin/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/lib/amazeUI_admin/css/admin.css">
+</head>
+<body>
+<!--header start-->
+<% include admin-header.ejs %>
+<!--header end-->
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <% include admin-sidebar.ejs %>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">每日报表</strong> / <small>全部报表</small></div>
+      </div>
+
+      <hr>
+
+      <div class="am-g">
+        <% include admin-search.ejs %>
+      </div>
+
+      <div class="am-g">
+        <div class="am-u-sm-12">
+          <form class="am-form">
+            <table class="am-table am-table-striped am-table-hover table-main">
+              <thead>
+              <tr>
+                <!--<th class="table-check"><input type="checkbox" /></th>-->
+                <th class="table-id">ID</th><th class="table-title">日期</th>
+                <th class="table-title">广告名</th>
+                <th class="table-type">广告主</th><th class="table-author am-hide-sm-only">展示方式</th>
+                <th class="table-type">计费方式</th><th class="table-author am-hide-sm-only">广告单价</th>
+                <th class="table-author am-hide-sm-only">最大投量</th>
+                <th class="table-type">最大日投</th><th class="table-author am-hide-sm-only">今日消耗</th>
+                <th class="table-type">今日金额</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% for(var report of data.reports) {%>
+              <tr>
+                <!--<td><input type="checkbox" /></td>-->
+                <td><%= report.nId %></td>
+                <td class="am-hide-sm-only"><%= report.sDate %></td>
+                <td><a href="#"><%= report.sAdvertName %></a></td>
+                <td><%= report.sOwnerName %></td>
+                <td class="am-hide-sm-only"><%= report.sDisplayType %></td>
+                <td class="am-hide-sm-only"><%= report.sChargeType %></td>
+                <td class="am-hide-sm-only"><%= report.nAdvertPrice %></td>
+                <td class="am-hide-sm-only"><%= report.nMaxCount %></td>
+                <td class="am-hide-sm-only"><%= report.nMaxDayCount %></td>
+                <td class="am-hide-sm-only"><%= report.nDayCost %></td>
+                <td class="am-hide-sm-only"><%= report.nMoney %></td>
+
+              </tr>
+              <% }%>
+              </tbody>
+            </table>
+            <div class="am-cf">
+              共 <%= data.reports.length %> 条记录
+            </div>
+            <hr />
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <footer class="admin-content-footer">
+      <hr>
+      <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+
+  </div>
+  <!-- content end -->
+</div>
+
+<!--footer and base js begin-->
+<% include admin-footer.ejs %>
+<!--footer and base js end-->
+</body>
+</html>

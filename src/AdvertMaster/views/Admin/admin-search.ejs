@@ -1,0 +1,36 @@
+<form method="post" action="#">
+    <% if(data.query){ %>
+    <% if(data.query.date){%>
+    <div class="am-u-sm-12 am-u-md-2">
+        <div class="am-form-group">
+            <div class="am-form-group am-form-icon am-form am-form-inline">
+                <i class="am-icon-calendar"></i>
+                <input name=<%= data.query.date%> type="date" class="am-form-field am-input-sm" placeholder="日期">
+            </div>
+        </div>
+    </div>
+    <% }%>
+    <% if(data.query.category){%>
+        <div class="am-u-sm-12 am-u-md-3">
+            <div class="am-form-group">
+                <select name=<%= data.query.category[0].name %> data-am-selected="{btnSize:'sm'}">
+                    <% for(var value of data.query.category[0].options) {%>
+                    <option value=<%= value %>><%= value %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+    <% }%>
+    <% if(data.query.sss){%>
+    <% }%>
+
+    <div class="am-u-sm-12 am-u-md-3">
+        <div class="am-input-group am-input-group-sm">
+            <input name="keyword" type="text" class="am-form-field">
+          <span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="submit">搜索</button>
+          </span>
+        </div>
+    </div>
+    <%}%>
+</form>
